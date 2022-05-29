@@ -22,7 +22,8 @@
 					"uid": 5,
 					"instanceVariables": {
 						"isEnd": false,
-						"snap_to": 0
+						"snap_to": 0,
+						"about_to_destroy": false
 					},
 					"behaviors": {},
 					"world": {
@@ -279,7 +280,9 @@
 						"class": ""
 					},
 					"uid": 34,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"map_id": 0
+					},
 					"behaviors": {},
 					"world": {
 						"x": 1248,
@@ -303,14 +306,16 @@
 						"text": "Переим.",
 						"tooltip": "",
 						"initially-visible": true,
-						"enabled": true,
+						"enabled": false,
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
 						"class": ""
 					},
 					"uid": 35,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"map_id": 0
+					},
 					"behaviors": {},
 					"world": {
 						"x": 1248,
@@ -341,7 +346,9 @@
 						"class": ""
 					},
 					"uid": 36,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"map_id": 0
+					},
 					"behaviors": {},
 					"world": {
 						"x": 1248,
@@ -372,7 +379,9 @@
 						"class": ""
 					},
 					"uid": 39,
-					"instanceVariables": {},
+					"instanceVariables": {
+						"map_id": 0
+					},
 					"behaviors": {},
 					"world": {
 						"x": 1248,
@@ -712,8 +721,8 @@
 					"world": {
 						"x": 480,
 						"y": 736,
-						"width": 56,
-						"height": 56,
+						"width": 60,
+						"height": 46,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -777,8 +786,8 @@
 					"world": {
 						"x": 608,
 						"y": 752,
-						"width": 89,
-						"height": 72,
+						"width": 68,
+						"height": 79,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [

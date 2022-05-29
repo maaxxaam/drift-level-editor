@@ -110,10 +110,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 156586137571553,
+							"sid": 461339923374786,
 							"parameters": {
 								"variable": "LastX",
-								"value": "CanScrollX ? Touch.X(0) : 360"
+								"value": "CanScrollX ? Touch.X(0) : MidScreenX"
 							}
 						},
 						{
@@ -151,10 +151,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 776440718409331,
+							"sid": 998040336095228,
 							"parameters": {
 								"variable": "LastX",
-								"value": "CanScrollX ? scrollx - (Touch.X(0) - LastX) : 360"
+								"value": "CanScrollX ? scrollx - (Touch.X(0) - LastX) : MidScreenX"
 							}
 						},
 						{
@@ -187,10 +187,10 @@
 						{
 							"id": "scroll-to-position",
 							"objectClass": "System",
-							"sid": 692400006622865,
+							"sid": 931267628205852,
 							"parameters": {
-								"x": "CanScrollX ? lerp(scrollx, clamp(LastX, 360, ScrollBoundXmax), 0.5) : 360",
-								"y": "CanScrollY ? lerp(scrolly, clamp(LastY, 720, ScrollBoundYmax), 0.5) : 720"
+								"x": "CanScrollX ? lerp(scrollx, clamp(LastX, 640, ScrollBoundXmax), 0.5) : 640",
+								"y": "CanScrollY ? lerp(scrolly, clamp(LastY, 360, ScrollBoundYmax), 0.5) : 360"
 							}
 						}
 					],
@@ -209,10 +209,10 @@
 						{
 							"id": "scroll-to-position",
 							"objectClass": "System",
-							"sid": 548828816483443,
+							"sid": 203148112208196,
 							"parameters": {
-								"x": "CanScrollX ? lerp(scrollx, clamp(scrollx - (Touch.X(0) - LastX), 360, ScrollBoundXmax), 0.5) : 360",
-								"y": "CanScrollY ? lerp(scrolly, clamp(scrolly - (Touch.Y(0) - LastY), 720, ScrollBoundYmax), 0.5) : 720"
+								"x": "CanScrollX ? lerp(scrollx, clamp(scrollx - (Touch.X(0) - LastX), 640, ScrollBoundXmax), 0.5) : 640",
+								"y": "CanScrollY ? lerp(scrolly, clamp(scrolly - (Touch.Y(0) - LastY), 360, ScrollBoundYmax), 0.5) : 360"
 							}
 						}
 					],
@@ -262,10 +262,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 768219503112469,
+							"sid": 926132674010962,
 							"parameters": {
 								"variable": "LastY",
-								"value": "CanScrollY ? clamp(scrolly - ScrollWheelRate, 720, ScrollBoundYmax) : 720"
+								"value": "CanScrollY ? clamp(scrolly - ScrollWheelRate, MidScreenY, ScrollBoundYmax) : MidScreenY"
 							}
 						}
 					],
@@ -305,10 +305,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 994477356196327,
+							"sid": 353472956912670,
 							"parameters": {
 								"variable": "LastY",
-								"value": "CanScrollY ? clamp(scrolly + ScrollWheelRate, 720, ScrollBoundYmax) : 720"
+								"value": "CanScrollY ? clamp(scrolly + ScrollWheelRate, MidScreenY, ScrollBoundYmax) : MidScreenY"
 							}
 						}
 					],
@@ -517,9 +517,9 @@
 						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 784704441563843,
+							"sid": 461093790013323,
 							"parameters": {
-								"variable": "CanScrollY",
+								"variable": "CanUseWheel",
 								"value": "true"
 							}
 						}
@@ -539,9 +539,9 @@
 						{
 							"id": "set-boolean-eventvar",
 							"objectClass": "System",
-							"sid": 212193293842882,
+							"sid": 985630171585152,
 							"parameters": {
-								"variable": "CanScrollY",
+								"variable": "CanUseWheel",
 								"value": "false"
 							}
 						}

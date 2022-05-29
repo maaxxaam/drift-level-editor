@@ -232,7 +232,9 @@
 			"changes_buffer",
 			"UndoAction",
 			"RedoAction",
-			"DestroyObject"
+			"DestroyObject",
+			"base_types",
+			"background"
 		],
 		"subfolders": []
 	},
@@ -240,7 +242,9 @@
 	"containers": [],
 	"families": {
 		"items": [
-			"MapElement"
+			"MapElement",
+			"LoadableDict",
+			"MapButton"
 		],
 		"subfolders": []
 	},
@@ -375,6 +379,14 @@
 					"file-info": {
 						"purpose": "none"
 					}
+				},
+				{
+					"name": "Types.json",
+					"type": "application/json",
+					"sid": 865137354183596,
+					"file-info": {
+						"purpose": "none"
+					}
 				}
 			],
 			"subfolders": []
@@ -442,5 +454,5 @@
 	},
 	"viewportWidth": 1280,
 	"viewportHeight": 720,
-	"firstLayout": null
+	"firstLayout": "Menu"
 }

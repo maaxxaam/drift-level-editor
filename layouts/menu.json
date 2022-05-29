@@ -48,21 +48,21 @@
 				{
 					"type": "welcome_txt",
 					"properties": {
-						"text": "Text",
+						"text": "Drift Game Level Editor\n\nbuild alpha 0.1.0",
 						"enable-bbcode": true,
 						"font": "Arial",
-						"size": 12,
+						"size": 24,
 						"line-height": 0,
-						"bold": false,
+						"bold": true,
 						"italic": false,
 						"color": [
-							0,
-							0,
-							0,
+							1,
+							1,
+							1,
 							1
 						],
-						"horizontal-alignment": "left",
-						"vertical-alignment": "top",
+						"horizontal-alignment": "center",
+						"vertical-alignment": "center",
 						"wrapping": "word",
 						"initially-visible": true,
 						"origin": "top-left"
@@ -71,10 +71,10 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 1042,
-						"y": 157,
-						"width": 200,
-						"height": 30,
+						"x": 966,
+						"y": 134,
+						"width": 270.5056992622029,
+						"height": 267.01173251117774,
 						"originX": 0,
 						"originY": 0,
 						"color": [

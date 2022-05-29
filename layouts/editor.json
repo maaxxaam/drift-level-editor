@@ -7,6 +7,39 @@
 			"subLayers": [],
 			"instances": [
 				{
+					"type": "background",
+					"properties": {
+						"initially-visible": true,
+						"origin": "top-left",
+						"wrap-horizontal": "repeat",
+						"wrap-vertical": "repeat",
+						"image-offset-x": 0,
+						"image-offset-y": 0,
+						"image-scale-x": 1,
+						"image-scale-y": 1,
+						"image-angle": 0
+					},
+					"uid": 69,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 0,
+						"y": 0,
+						"width": 30000,
+						"height": 30000,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
 					"type": "road",
 					"properties": {
 						"initially-visible": true,
@@ -59,11 +92,11 @@
 					},
 					"world": {
 						"x": 15000,
-						"y": 15000,
-						"width": 370,
-						"height": 1150,
+						"y": 16152,
+						"width": 768,
+						"height": 2344,
 						"originX": 0.5,
-						"originY": 0.5,
+						"originY": 0.9914675767918089,
 						"color": [
 							1,
 							1,
@@ -86,9 +119,9 @@
 				1
 			],
 			"backgroundColor": [
-				0.3686274509803922,
-				0.3686274509803922,
-				0.3686274509803922,
+				0,
+				0,
+				0,
 				1
 			],
 			"isTransparent": false,
@@ -145,7 +178,7 @@
 					"type": "scale",
 					"properties": {
 						"value": 1,
-						"minimum": 0.1,
+						"minimum": 0,
 						"maximum": 2,
 						"step": 0.05,
 						"tooltip": "",
@@ -319,7 +352,7 @@
 						"text": "Сохранить",
 						"tooltip": "",
 						"initially-visible": true,
-						"enabled": false,
+						"enabled": true,
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
@@ -350,7 +383,7 @@
 						"text": "Выйти",
 						"tooltip": "",
 						"initially-visible": true,
-						"enabled": false,
+						"enabled": true,
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
@@ -1311,8 +1344,8 @@
 		{
 			"type": "ThisLvl",
 			"properties": {
-				"width": 10,
-				"height": 1,
+				"width": 1,
+				"height": 5,
 				"depth": 1
 			},
 			"uid": 47,
@@ -1322,19 +1355,25 @@
 			"type": "decor_subs",
 			"properties": {},
 			"uid": 52,
-			"instanceVariables": {}
+			"instanceVariables": {
+				"tag": "decor"
+			}
 		},
 		{
 			"type": "bonus_subs",
 			"properties": {},
 			"uid": 53,
-			"instanceVariables": {}
+			"instanceVariables": {
+				"tag": "bonuses"
+			}
 		},
 		{
 			"type": "obstacle_subs",
 			"properties": {},
 			"uid": 54,
-			"instanceVariables": {}
+			"instanceVariables": {
+				"tag": "obstacles"
+			}
 		},
 		{
 			"type": "current_subs",
@@ -1353,6 +1392,14 @@
 			"instanceVariables": {
 				"current_action": 0,
 				"last_action": -1
+			}
+		},
+		{
+			"type": "base_types",
+			"properties": {},
+			"uid": 61,
+			"instanceVariables": {
+				"tag": "base_types"
 			}
 		}
 	],

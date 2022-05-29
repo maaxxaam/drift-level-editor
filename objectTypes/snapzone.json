@@ -15,6 +15,12 @@
 			"type": "number",
 			"desc": "",
 			"sid": 741345267680634
+		},
+		{
+			"name": "about_to_destroy",
+			"type": "boolean",
+			"desc": "",
+			"sid": 718726562385447
 		}
 	],
 	"behaviorTypes": [],

@@ -1,0 +1,19 @@
+{
+	"name": "LoadableDict",
+	"plugin-id": "Dictionary",
+	"sid": 606016549992422,
+	"instanceVariables": [
+		{
+			"name": "tag",
+			"type": "string",
+			"desc": "Tag for AJAX to use",
+			"sid": 240837807804888
+		}
+	],
+	"members": [
+		"base_types",
+		"bonus_subs",
+		"decor_subs",
+		"obstacle_subs"
+	]
+}
