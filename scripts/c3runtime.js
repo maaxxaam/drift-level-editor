@@ -5186,16 +5186,31 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Exps.layoutheight,
 		C3.Plugins.System.Acts.SetLayerScale,
 		C3.Plugins.AJAX.Acts.RequestFile,
-		C3.Plugins.System.Cnds.CompareBoolVar,
-		C3.Plugins.System.Cnds.Else,
+		C3.Plugins.Arr.Acts.SetSize,
+		C3.Plugins.Arr.Exps.Height,
+		C3.Plugins.Arr.Acts.SetInstanceVar,
+		C3.Plugins.System.Cnds.IsPreview,
+		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.System.Cnds.PickByComparison,
 		C3.Plugins.Sprite.Exps.AnimationName,
 		C3.Behaviors.DragnDrop.Acts.SetEnabled,
 		C3.Plugins.Sprite.Exps.UID,
+		C3.Plugins.System.Cnds.Else,
+		C3.Plugins.System.Cnds.For,
+		C3.Plugins.Arr.Exps.Width,
+		C3.Plugins.System.Cnds.Compare,
+		C3.Plugins.System.Exps.loopindex,
+		C3.Plugins.System.Cnds.PickLastCreated,
+		C3.Plugins.Sprite.Acts.SetPos,
+		C3.Plugins.Arr.Exps.At,
+		C3.Plugins.Sprite.Acts.SetAngle,
+		C3.Plugins.AJAX.Cnds.OnAnyComplete,
+		C3.Plugins.AJAX.Exps.Tag,
+		C3.Plugins.Dictionary.Acts.JSONLoad,
+		C3.Plugins.AJAX.Exps.LastData,
 		C3.Plugins.Sprite.Cnds.OnCreated,
 		C3.Plugins.Sprite.Acts.SetEffectEnabled,
 		C3.Plugins.System.Cnds.IsGroupActive,
-		C3.Plugins.System.Cnds.CompareVar,
 		C3.Plugins.System.Cnds.TriggerOnce,
 		C3.Plugins.System.Exps.scrollx,
 		C3.Plugins.System.Exps.scrolly,
@@ -5208,37 +5223,38 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.sliderbar.Exps.Value,
 		C3.Plugins.List.Cnds.OnSelectionChanged,
 		C3.Plugins.Button.Cnds.OnClicked,
+		C3.Plugins.Sprite.Cnds.PickByUID,
 		C3.Plugins.Sprite.Acts.Destroy,
-		C3.Plugins.List.Cnds.CompareSelection,
-		C3.Plugins.System.Acts.CreateObject,
-		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
-		C3.Plugins.Sprite.Acts.SetOpacity,
-		C3.Plugins.Sprite.Acts.SetAnim,
-		C3.Plugins.Sprite.Acts.SetInstanceVar,
-		C3.Plugins.Sprite.Acts.SetAngle,
+		C3.Plugins.System.Acts.CreateObjectByName,
 		C3.Plugins.Dictionary.Exps.Get,
 		C3.Plugins.List.Exps.SelectedIndex,
-		C3.Behaviors.DragnDrop.Cnds.IsDragging,
+		C3.Plugins.Sprite.Acts.SetBoolInstanceVar,
+		C3.Plugins.Sprite.Acts.SetOpacity,
+		C3.Plugins.List.Cnds.CompareSelection,
+		C3.Plugins.Sprite.Acts.SetAnim,
+		C3.Plugins.Sprite.Acts.SetInstanceVar,
+		C3.Plugins.Touch.Cnds.OnTapGesture,
 		C3.Plugins.Touch.Cnds.IsTouchingObject,
 		C3.Plugins.System.Acts.Scroll,
 		C3.Plugins.Touch.Exps.X,
 		C3.Plugins.Touch.Exps.Y,
-		C3.Plugins.AJAX.Cnds.OnComplete,
-		C3.Plugins.Dictionary.Acts.JSONLoad,
-		C3.Plugins.AJAX.Exps.LastData,
+		C3.Behaviors.DragnDrop.Cnds.IsDragging,
 		C3.Plugins.Touch.Cnds.OnTapGestureObject,
-		C3.Plugins.Sprite.Cnds.PickByUID,
+		C3.Plugins.List.Acts.Select,
+		C3.Plugins.List.Acts.SetEnabled,
+		C3.Plugins.System.Acts.Wait,
+		C3.Plugins.System.Exps.dt,
+		C3.Plugins.System.Acts.CreateObject,
+		C3.Plugins.Button.Acts.SetChecked,
+		C3.Plugins.TiledBg.Exps.UID,
 		C3.Plugins.Browser.Acts.ConsoleLog,
 		C3.Plugins.System.Cnds.PickAll,
-		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.Sprite.Exps.ObjectTypeName,
 		C3.Plugins.Sprite.Cnds.IsOverlapping,
 		C3.Plugins.System.Cnds.ForEach,
 		C3.Plugins.Button.Cnds.IsChecked,
-		C3.Plugins.TiledBg.Exps.UID,
 		C3.Plugins.TiledBg.Cnds.PickByUID,
 		C3.Plugins.TiledBg.Cnds.IsBoolInstanceVarSet,
-		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.TiledBg.Exps.X,
 		C3.Plugins.TiledBg.Exps.Y,
 		C3.Plugins.TiledBg.Exps.Angle,
@@ -5249,36 +5265,30 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Exps.ImagePointY,
 		C3.Plugins.Sprite.Exps.Y,
 		C3.Plugins.Mouse.Cnds.OnWheel,
-		C3.Plugins.Button.Acts.SetChecked,
-		C3.Plugins.Button.Cnds.PickByUID,
+		C3.Plugins.Keyboard.Cnds.IsLeftRightKeyDown,
+		C3.Plugins.sliderbar.Exps.Step,
 		C3.Plugins.sliderbar.Exps.Minimum,
 		C3.Plugins.sliderbar.Exps.Maximum,
+		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
+		C3.Plugins.Keyboard.Cnds.OnKey,
+		C3.Plugins.System.Acts.GoToLayout,
+		C3.Plugins.Button.Cnds.PickByUID,
 		C3.Plugins.sliderbar.Acts.SetEnabled,
-		C3.Plugins.List.Acts.SetEnabled,
 		C3.Plugins.System.Cnds.PickNth,
 		C3.Plugins.Button.Acts.SetEnabled,
-		C3.Plugins.List.Acts.Clear,
-		C3.Plugins.List.Acts.AddItem,
+		C3.Plugins.List.Acts.LoadFromJsonString,
 		C3.Plugins.Dictionary.Exps.AsJSON,
-		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
-		C3.Plugins.System.Acts.Wait,
-		C3.Plugins.System.Exps.dt,
-		C3.Plugins.Arr.Acts.SetInstanceVar,
+		C3.Plugins.List.Exps.AsJSON,
 		C3.Plugins.Arr.Acts.AddInstanceVar,
-		C3.Plugins.Arr.Acts.SetSize,
 		C3.Plugins.Arr.Acts.SetXY,
 		C3.Plugins.Arr.Acts.SubInstanceVar,
-		C3.Plugins.Arr.Exps.At,
 		C3.Plugins.Arr.Cnds.CompareInstanceVar,
+		C3.Plugins.TiledBg.Acts.SetBoolInstanceVar,
 		C3.Plugins.TiledBg.Acts.Destroy,
-		C3.Plugins.Sprite.Cnds.CompareInstanceVar,
 		C3.Plugins.Sprite.Acts.Spawn,
 		C3.Plugins.TiledBg.Acts.SetAngle,
-		C3.Plugins.TiledBg.Acts.SetBoolInstanceVar,
 		C3.Plugins.TiledBg.Acts.SetInstanceVar,
 		C3.Plugins.System.Exps.tokenat,
-		C3.Plugins.System.Acts.CreateObjectByName,
-		C3.Plugins.System.Cnds.PickLastCreated,
 		C3.Plugins.System.Exps.left,
 		C3.Plugins.System.Exps.int,
 		C3.Plugins.System.Exps.right,
@@ -5288,11 +5298,19 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.sliderbar.Cnds.PickByUID,
 		C3.Plugins.Text.Cnds.PickByUID,
 		C3.Plugins.Sprite.Acts.ZMoveToObject,
-		C3.Plugins.LocalStorage.Acts.CheckItemExists,
-		C3.Plugins.Date.Exps.ToLocaleString,
+		C3.Plugins.Sprite.Cnds.IsBoolInstanceVarSet,
+		C3.Plugins.System.Acts.SetBoolVar,
+		C3.Plugins.System.Cnds.CompareBoolVar,
+		C3.Plugins.System.Cnds.While,
+		C3.Plugins.System.Acts.StopLoop,
+		C3.Plugins.Arr.Acts.Push,
+		C3.Plugins.Dictionary.Acts.SetKey,
 		C3.Plugins.Date.Exps.Now,
-		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Acts.SetItem,
+		C3.Plugins.Arr.Exps.AsJSON,
+		C3.Plugins.LocalStorage.Cnds.OnAllSetsComplete,
+		C3.Plugins.LocalStorage.Acts.CheckItemExists,
+		C3.Plugins.LocalStorage.Cnds.OnItemMissing,
 		C3.Plugins.LocalStorage.Cnds.OnItemExists,
 		C3.Plugins.LocalStorage.Acts.GetItem,
 		C3.Plugins.LocalStorage.Cnds.OnItemGet,
@@ -5305,24 +5323,31 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.NinePatch.Exps.UID,
 		C3.Plugins.NinePatch.Exps.X,
 		C3.Plugins.NinePatch.Exps.Y,
-		C3.Plugins.LocalStorage.Cnds.OnAllSetsComplete,
 		C3.Plugins.LocalStorage.Cnds.OnAnyItemGet,
 		C3.Plugins.LocalStorage.Exps.Key,
 		C3.Plugins.NinePatch.Cnds.PickByUID,
+		C3.Plugins.Date.Exps.ToLocaleString,
+		C3.Plugins.Button.Acts.SetInstanceVar,
 		C3.Plugins.TextBox.Cnds.CompareText,
 		C3.Plugins.System.Cnds.PickOverlappingPoint,
 		C3.Plugins.Button.Exps.X,
 		C3.Plugins.Button.Exps.Y,
 		C3.Plugins.System.Exps.random,
+		C3.Plugins.Dictionary.Cnds.HasKey,
 		C3.Plugins.Dictionary.Acts.AddKey,
 		C3.Plugins.TextBox.Exps.Text,
 		C3.Plugins.Arr.Acts.JSONLoad,
-		C3.Plugins.Arr.Exps.AsJSON,
-		C3.Plugins.System.Acts.GoToLayout,
+		C3.Plugins.AJAX.Cnds.OnComplete,
+		C3.Plugins.Arr.Acts.JSONDownload,
+		C3.Plugins.LocalStorage.Acts.RemoveItem,
+		C3.Plugins.Dictionary.Acts.DeleteKey,
+		C3.Plugins.Button.Acts.Destroy,
+		C3.Plugins.NinePatch.Acts.Destroy,
+		C3.Plugins.TextBox.Acts.Destroy,
+		C3.Plugins.Text.Acts.Destroy,
 		C3.Plugins.Touch.Cnds.OnTouchStart,
 		C3.Plugins.Touch.Cnds.OnTouchEnd,
-		C3.Plugins.Touch.Cnds.IsInTouch,
-		C3.Plugins.System.Acts.SetBoolVar
+		C3.Plugins.Touch.Cnds.IsInTouch
 	];
 };
 self.C3_JsPropNameTable = [
@@ -5340,6 +5365,7 @@ self.C3_JsPropNameTable = [
 	{road: 0},
 	{isEnd: 0},
 	{snap_to: 0},
+	{about_to_destroy: 0},
 	{SnapZone: 0},
 	{Touch: 0},
 	{Browser: 0},
@@ -5367,6 +5393,7 @@ self.C3_JsPropNameTable = [
 	{map_dates: 0},
 	{map_name_txt: 0},
 	{map_date_txt: 0},
+	{map_id: 0},
 	{load_map: 0},
 	{rename_map: 0},
 	{delete_map: 0},
@@ -5384,6 +5411,7 @@ self.C3_JsPropNameTable = [
 	{TiledBackground: 0},
 	{scroll_zone: 0},
 	{decor: 0},
+	{tag: 0},
 	{decor_subs: 0},
 	{bonus_subs: 0},
 	{obstacle_subs: 0},
@@ -5396,8 +5424,12 @@ self.C3_JsPropNameTable = [
 	{UndoAction: 0},
 	{RedoAction: 0},
 	{DestroyObject: 0},
+	{base_types: 0},
+	{background: 0},
 	{DragDrop: 0},
 	{MapElement: 0},
+	{LoadableDict: 0},
+	{MapButton: 0},
 	{ACTION_DELETE: 0},
 	{ACTION_MODIFY: 0},
 	{ACTION_ADD: 0},
@@ -5406,7 +5438,6 @@ self.C3_JsPropNameTable = [
 	{EDITOR_READY: 0},
 	{MapSlot: 0},
 	{EdState: 0},
-	{RequestedLoad: 0},
 	{EditUID: 0},
 	{r1: 0},
 	{r2: 0},
@@ -5415,17 +5446,28 @@ self.C3_JsPropNameTable = [
 	{vector: 0},
 	{snap_uid: 0},
 	{typeID: 0},
-	{obj_str: 0},
-	{y: 0},
-	{x: 0},
-	{new_angle: 0},
 	{action_type: 0},
 	{road_uid: 0},
+	{obj_str: 0},
+	{x: 0},
+	{y: 0},
+	{new_angle: 0},
 	{old_x: 0},
 	{old_y: 0},
 	{object_animation: 0},
 	{object_type: 0},
+	{new_uid: 0},
 	{object_string: 0},
+	{Delta: 0},
+	{error: 0},
+	{complete_track: 0},
+	{finish_id: 0},
+	{next_id: 0},
+	{MAP_NEW: 0},
+	{MAP_DELETE: 0},
+	{MAP_DOWNLOAD: 0},
+	{MAP_LOAD: 0},
+	{MapAction: 0},
 	{LoadOrder: 0},
 	{total: 0},
 	{map_back_UID: 0},
@@ -5556,28 +5598,64 @@ self.C3_ExpressionFuncs = [
 			return () => (f0() / 2);
 		},
 		() => "Level",
-		() => 0.25,
+		() => 0.175,
 		() => "Ready",
 		() => "bonuses",
 		() => "decor",
 		() => "obstacles",
+		() => "base_types",
+		() => 0,
 		p => {
 			const n0 = p._GetNode(0);
 			return () => n0.ExpObject();
 		},
+		() => 1,
+		() => -1,
 		() => "Finish",
-		() => "TintSelected",
-		() => "On State Changed",
+		() => "loadloop",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 1);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("loadloop");
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => n0.ExpObject(f1("loadloop"), 2);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => n0.ExpObject(f1("loadloop"), 3);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => n0.ExpObject(f1("loadloop"), 4);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => n0.ExpObject(f1("loadloop"), 1);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpInstVar_Family();
+		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0();
 		},
+		() => "TintSelected",
+		() => "On State Changed",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => (f0() - (f1("Level") / 2));
 		},
-		() => 0,
 		() => "GUI_root",
 		() => "New",
 		p => {
@@ -5593,11 +5671,12 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() / 4);
+			return () => ((n0.ExpObject() / 8) + 0.05);
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => n0.ExpInstVar_Family();
+			const n1 = p._GetNode(1);
+			return () => n0.ExpObject((n1.ExpObject()).toString());
 		},
 		() => "",
 		() => 60,
@@ -5606,14 +5685,10 @@ self.C3_ExpressionFuncs = [
 			const n1 = p._GetNode(1);
 			return () => and(((((n0.ExpObject()) < (0) ? 1 : 0)) ? ("l") : ("r")), Math.abs(n1.ExpObject()));
 		},
-		() => 1,
 		p => {
-			const n0 = p._GetNode(0);
-			const n1 = p._GetNode(1);
-			return () => n0.ExpObject((n1.ExpObject()).toString());
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => f0("Level");
 		},
-		() => 2,
-		() => 3,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -5634,7 +5709,6 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => n0.ExpInstVar();
 		},
-		() => -1,
 		p => {
 			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
@@ -5665,52 +5739,52 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 10);
-		},
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 10);
-		},
-		() => 14,
-		p => {
-			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
 			const n2 = p._GetNode(2);
-			return () => C3.clamp((n0.ExpObject() + 10), n1.ExpObject(), n2.ExpObject());
+			const n3 = p._GetNode(3);
+			return () => C3.clamp((n0.ExpObject() - n1.ExpObject()), n2.ExpObject(), n3.ExpObject());
 		},
-		() => 20,
-		p => {
-			const n0 = p._GetNode(0);
-			return () => (and("Угол поворота: ", n0.ExpObject()) + "°");
-		},
-		() => 15,
 		p => {
 			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
 			const n2 = p._GetNode(2);
 			return () => C3.clamp((n0.ExpObject() - 10), n1.ExpObject(), n2.ExpObject());
 		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (and("Угол поворота: ", n0.ExpObject()) + "°");
+		},
+		() => -10,
+		p => {
+			const n0 = p._GetNode(0);
+			const n1 = p._GetNode(1);
+			const n2 = p._GetNode(2);
+			const n3 = p._GetNode(3);
+			return () => C3.clamp((n0.ExpObject() + n1.ExpObject()), n2.ExpObject(), n3.ExpObject());
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const n1 = p._GetNode(1);
+			const n2 = p._GetNode(2);
+			return () => C3.clamp((n0.ExpObject() + 10), n1.ExpObject(), n2.ExpObject());
+		},
+		() => 10,
+		() => 14,
+		() => 20,
+		() => 15,
 		() => 19,
-		() => "Монета",
-		() => "Ракета",
-		() => "Нитро",
-		() => "Камень 1",
-		() => "Камень 2",
-		() => "Камень 3",
-		() => "Шипы",
-		() => "Бочка 1",
-		() => "Бочка 2",
-		() => "Дерево 1",
-		() => "Дерево 2",
-		() => "Палатка 1",
-		() => "Палатка 2",
-		() => "Add",
+		() => "{\"c3\":true,\"w\":{\"x\":240,\"y\":640,\"w\":150,\"h\":22,\"l\":593705883740258,\"zi\":12,\"oX\":0,\"oY\":0},\"data\":{\"title\":\"\",\"isEnabled\":true,\"id\":\"\",\"items\":[\"Монета\",\"Ракета\",\"Нитро\",\"Бонус\"],\"selectedIndex\":-1,\"selectedIndices\":[]}}",
+		() => 2,
+		() => "{\"c3\":true,\"w\":{\"x\":240,\"y\":640,\"w\":150,\"h\":22,\"l\":593705883740258,\"zi\":12,\"oX\":0,\"oY\":0},\"data\":{\"title\":\"\",\"isEnabled\":true,\"id\":\"\",\"items\":[\"Камень 1\",\"Камень 2\",\"Камень 3\",\"Камень 4\",\"Камень 1 (мал.)\",\"Камень 2 (мал.)\",\"Камень 3 (мал.)\",\"Камень 4 (мал.)\",\"Шипы\"],\"selectedIndex\":-1,\"selectedIndices\":[]}}",
+		() => 3,
+		() => "{\"c3\":true,\"w\":{\"x\":240,\"y\":640,\"w\":150,\"h\":22,\"l\":593705883740258,\"zi\":12,\"oX\":0,\"oY\":0},\"data\":{\"title\":\"\",\"isEnabled\":true,\"id\":\"\",\"items\":[\"Дерево 1\",\"Дерево 2\",\"Палатка 1\",\"Палатка 2\"],\"selectedIndex\":-1,\"selectedIndices\":[]}}",
+		() => 9,
 		p => {
 			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
 			return () => ((n0.ExpObject() + "_") + n1.ExpObject());
 		},
-		() => 9,
+		() => "Add",
 		() => 6,
 		() => 7,
 		() => 8,
@@ -5801,16 +5875,41 @@ self.C3_ExpressionFuncs = [
 		() => 63,
 		() => 66,
 		() => 100,
-		() => 640,
-		() => 360,
-		() => "map_amount",
-		() => "map_names",
+		p => {
+			const n0 = p._GetNode(0);
+			const v1 = p._GetNode(1).GetVar();
+			return () => (n0.ExpObject() + v1.GetValue());
+		},
+		() => "Сохраняться во время Preview? Сильно...",
+		() => "road_Finish",
+		() => "Не удалось найти сегмент старта/финиша. Какого...?",
+		() => "Осторожно: редактору не удалось завершить кольцо трассы. Эту карту пока не стоит экспортировать.",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => add(n0.ExpObject(0, 0), 1);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			return () => ("road_" + n0.ExpObject());
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => and("map_", v0.GetValue());
+		},
 		() => "map_dates",
+		() => "Карта сохранена!",
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => (f0(0) / 2);
+		},
+		() => 640,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => f0(f1());
+			return () => (f0() - (f1(0) / 2));
 		},
+		() => "map_amount",
+		() => "map_names",
 		() => "DefLvl",
 		() => 25,
 		p => {
@@ -5843,11 +5942,17 @@ self.C3_ExpressionFuncs = [
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const n1 = p._GetNode(1);
 			const n2 = p._GetNode(2);
-			return () => f0(n1.ExpObject(n2.ExpInstVar()));
+			return () => ("Последнее изменение: " + f0(n1.ExpObject(n2.ExpInstVar())));
 		},
 		p => {
 			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 160);
+		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const n2 = p._GetNode(2);
+			return () => f0(f1(n2.ExpInstVar(), 1, "_"));
 		},
 		p => {
 			const n0 = p._GetNode(0);
@@ -5866,28 +5971,22 @@ self.C3_ExpressionFuncs = [
 			const f1 = p._GetNode(1).GetBoundMethod();
 			return () => f0(f1(0, 999999999));
 		},
+		() => "Карта создана! Загружаем редактор...",
 		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => and("map_", v0.GetValue());
+			const f0 = p._GetNode(0).GetBoundMethod();
+			return () => (f0() + ".json");
+		},
+		() => "Карта найдена! Загружаем редактор...",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => and("map_", n0.ExpInstVar());
 		},
 		() => "Scroll",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => ((v0.GetValue()) ? (f1(0)) : (360));
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
 			return () => ((v0.GetValue()) ? (f1(0)) : (v2.GetValue()));
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			const f2 = p._GetNode(2).GetBoundMethod();
-			const v3 = p._GetNode(3).GetVar();
-			return () => ((v0.GetValue()) ? ((f1() - (f2(0) - v3.GetValue()))) : (360));
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -5902,14 +6001,23 @@ self.C3_ExpressionFuncs = [
 			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
 			const v3 = p._GetNode(3).GetVar();
-			return () => ((v0.GetValue()) ? (C3.lerp(f1(), C3.clamp(v2.GetValue(), 360, v3.GetValue()), 0.5)) : (360));
+			return () => ((v0.GetValue()) ? (C3.lerp(f1(), C3.clamp(v2.GetValue(), 640, v3.GetValue()), 0.5)) : (640));
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
 			const v3 = p._GetNode(3).GetVar();
-			return () => ((v0.GetValue()) ? (C3.lerp(f1(), C3.clamp(v2.GetValue(), 720, v3.GetValue()), 0.5)) : (720));
+			return () => ((v0.GetValue()) ? (C3.lerp(f1(), C3.clamp(v2.GetValue(), 360, v3.GetValue()), 0.5)) : (360));
+		},
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			const f2 = p._GetNode(2).GetBoundMethod();
+			const f3 = p._GetNode(3).GetBoundMethod();
+			const v4 = p._GetNode(4).GetVar();
+			const v5 = p._GetNode(5).GetVar();
+			return () => ((v0.GetValue()) ? (C3.lerp(f1(), C3.clamp((f2() - (f3(0) - v4.GetValue())), 640, v5.GetValue()), 0.5)) : (640));
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
@@ -5923,27 +6031,18 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const f1 = p._GetNode(1).GetBoundMethod();
-			const f2 = p._GetNode(2).GetBoundMethod();
-			const f3 = p._GetNode(3).GetBoundMethod();
+			const v2 = p._GetNode(2).GetVar();
+			const v3 = p._GetNode(3).GetVar();
 			const v4 = p._GetNode(4).GetVar();
-			const v5 = p._GetNode(5).GetVar();
-			return () => ((v0.GetValue()) ? (C3.lerp(f1(), C3.clamp((f2() - (f3(0) - v4.GetValue())), 720, v5.GetValue()), 0.5)) : (720));
+			return () => ((v0.GetValue()) ? (C3.clamp((f1() - 50), v2.GetValue(), v3.GetValue())) : (v4.GetValue()));
 		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			const f1 = p._GetNode(1).GetBoundMethod();
 			const v2 = p._GetNode(2).GetVar();
-			return () => ((v0.GetValue()) ? (C3.clamp((f1() - 50), 720, v2.GetValue())) : (720));
-		},
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			const v2 = p._GetNode(2).GetVar();
-			return () => ((v0.GetValue()) ? (C3.clamp((f1() + 50), 720, v2.GetValue())) : (720));
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (f0(0) / 2);
+			const v3 = p._GetNode(3).GetVar();
+			const v4 = p._GetNode(4).GetVar();
+			return () => ((v0.GetValue()) ? (C3.clamp((f1() + 50), v2.GetValue(), v3.GetValue())) : (v4.GetValue()));
 		}
 ];
 
