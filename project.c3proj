@@ -159,6 +159,14 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "filechooser",
+			"name": "File chooser",
+			"author": "Scirra",
+			"version": "r293.3",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "DragnDrop",
 			"name": "Drag & Drop",
@@ -234,7 +242,8 @@
 			"RedoAction",
 			"DestroyObject",
 			"base_types",
-			"background"
+			"background",
+			"FileChooser"
 		],
 		"subfolders": []
 	},

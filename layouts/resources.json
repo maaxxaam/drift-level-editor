@@ -458,8 +458,8 @@
 						}
 					},
 					"world": {
-						"x": 672,
-						"y": 64,
+						"x": 0,
+						"y": 0,
 						"width": 800,
 						"height": 200,
 						"originX": 0,
@@ -525,8 +525,8 @@
 						}
 					},
 					"world": {
-						"x": 672,
-						"y": 64,
+						"x": 0,
+						"y": 0,
 						"width": 576,
 						"height": 113,
 						"originX": 0,
@@ -558,8 +558,8 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 1312,
-						"y": 208,
+						"x": 640,
+						"y": 128,
 						"width": 128,
 						"height": 32,
 						"originX": 0,
@@ -591,8 +591,8 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 704,
-						"y": 208,
+						"x": 32,
+						"y": 128,
 						"width": 544,
 						"height": 32,
 						"originX": 0,
@@ -798,6 +798,33 @@
 						],
 						"angle": 0,
 						"zElevation": 0
+					}
+				},
+				{
+					"type": "FileChooser",
+					"properties": {
+						"accept": ".json",
+						"select": "single",
+						"initially-visible": true,
+						"id": "",
+						"class": ""
+					},
+					"uid": 70,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 640,
+						"y": 64,
+						"width": 128,
+						"height": 32,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
 					}
 				}
 			],
