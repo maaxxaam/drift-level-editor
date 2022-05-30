@@ -5142,6 +5142,17 @@ Permutation(i){const arr=this._permutation;const len=arr.length;i=i%len;if(i<0)i
 }
 
 {
+'use strict';{const C3=self.C3;const DOM_COMPONENT_ID="file-chooser";C3.Plugins.filechooser=class FileChooserPlugin extends C3.SDKDOMPluginBase{constructor(opts){super(opts,DOM_COMPONENT_ID);this.AddElementMessageHandler("change",(sdkInst,e)=>sdkInst._OnChange(e))}Release(){super.Release()}}}{const C3=self.C3;C3.Plugins.filechooser.Type=class FileChooserType extends C3.SDKTypeBase{constructor(objectClass){super(objectClass)}Release(){super.Release()}OnCreate(){}}}
+{const C3=self.C3;const ACCEPT=0;const SELECT=1;const INITIALLY_VISIBLE=2;const ID=3;const CLASS_NAME=4;const SINGLE=0;const MULTIPLE=1;const DOM_COMPONENT_ID="file-chooser";C3.Plugins.filechooser.Instance=class FileChooserInstance extends C3.SDKDOMInstanceBase{constructor(inst,properties){super(inst,DOM_COMPONENT_ID);this._accept="";this._isMultiSelect=false;this._id="";this._className="";this._files=[];if(properties){this._accept=properties[ACCEPT];this._isMultiSelect=properties[SELECT]!==SINGLE;
+this.GetWorldInfo().SetVisible(properties[INITIALLY_VISIBLE]);this._id=properties[ID];this._className=properties[CLASS_NAME]}this.CreateElement({"id":this._id,"className":this._className})}Release(){super.Release()}GetElementState(){return{"accept":this._accept,"isMultiSelect":this._isMultiSelect}}_GetFileAt(index){index=Math.floor(index);if(index<0||index>=this._files.length)return null;return this._files[index]}async _OnChange(e){this._files=e["files"];await this.TriggerAsync(C3.Plugins.filechooser.Cnds.OnChanged)}Draw(renderer){}GetPropertyValueByIndex(index){switch(index){case ACCEPT:return this._accept;
+case SELECT:return this._isMultiSelect?MULTIPLE:SINGLE}}SetPropertyValueByIndex(index,value){switch(index,value){case ACCEPT:if(this._accept===value)return;this._accept=value;this.UpdateElementState();break;case SELECT:if(this._isMultiSelect===(value!==SINGLE))return;this._isMultiSelect=value!==SINGLE;this.UpdateElementState();break}}}}{const C3=self.C3;C3.Plugins.filechooser.Cnds={OnChanged(){return true}}}
+{const C3=self.C3;C3.Plugins.filechooser.Acts={ReleaseFile(f){URL.revokeObjectURL(f)},Click(){this._PostToDOMElementMaybeSync("click")},Clear(){this.PostToDOMElement("clear")}}}
+{const C3=self.C3;const urlCache=new WeakMap;C3.Plugins.filechooser.Exps={FileCount(){return this._files.length},FileNameAt(i){const file=this._GetFileAt(i);return file?file["name"]||"":""},FileSizeAt(i){const file=this._GetFileAt(i);return file?file["size"]||0:0},FileTypeAt(i){const file=this._GetFileAt(i);return file?file["type"]||"":""},FileURLAt(i){const file=this._GetFileAt(i);if(!file)return"";let url=urlCache.get(file);if(url)return url;url=URL.createObjectURL(file);urlCache.set(file,url);
+return url}}};
+
+}
+
+{
 'use strict';{const C3=self.C3;C3.Behaviors.DragnDrop=class DragnDropBehavior extends C3.SDKBehaviorBase{constructor(opts){super(opts);const rt=this._runtime.Dispatcher();this._disposables=new C3.CompositeDisposable(C3.Disposable.From(rt,"pointerdown",e=>this._OnPointerDown(e.data)),C3.Disposable.From(rt,"pointermove",e=>this._OnPointerMove(e.data)),C3.Disposable.From(rt,"pointerup",e=>this._OnPointerUp(e.data,false)),C3.Disposable.From(rt,"pointercancel",e=>this._OnPointerUp(e.data,true)))}Release(){this._disposables.Release();
 this._disposables=null;super.Release()}_OnPointerDown(e){if(e["pointerType"]==="mouse"&&e["button"]!==0)return;this._OnInputDown(e["pointerId"].toString(),e["pageX"]-this._runtime.GetCanvasClientX(),e["pageY"]-this._runtime.GetCanvasClientY())}_OnPointerMove(e){if((e["lastButtons"]&1)!==0&&(e["buttons"]&1)===0)this._OnInputUp(e["pointerId"].toString());else this._OnInputMove(e["pointerId"].toString(),e["pageX"]-this._runtime.GetCanvasClientX(),e["pageY"]-this._runtime.GetCanvasClientY())}_OnPointerUp(e,
 isCancel){if(e["pointerType"]==="mouse"&&e["button"]!==0)return;this._OnInputUp(e["pointerId"].toString())}async _OnInputDown(src,clientX,clientY){const myInstances=this.GetInstances();let topMost=null;let topBehInst=null;let topX=0;let topY=0;for(const inst of myInstances){const behInst=inst.GetBehaviorSdkInstanceFromCtor(C3.Behaviors.DragnDrop);if(!behInst.IsEnabled()||behInst.IsDragging()||inst.IsDestroyed())continue;const wi=inst.GetWorldInfo();const layer=wi.GetLayer();const [lx,ly]=layer.CanvasCssToLayer(clientX,
@@ -5179,6 +5190,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Arr,
 		C3.Plugins.AJAX,
 		C3.Plugins.AdvancedRandom,
+		C3.Plugins.filechooser,
 		C3.Behaviors.DragnDrop,
 		C3.Plugins.System.Cnds.OnLayoutStart,
 		C3.Plugins.System.Acts.SetVar,
@@ -5345,6 +5357,11 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.NinePatch.Acts.Destroy,
 		C3.Plugins.TextBox.Acts.Destroy,
 		C3.Plugins.Text.Acts.Destroy,
+		C3.Plugins.filechooser.Acts.Destroy,
+		C3.Plugins.filechooser.Cnds.OnChanged,
+		C3.Plugins.AJAX.Acts.Request,
+		C3.Plugins.filechooser.Exps.FileURLAt,
+		C3.Plugins.filechooser.Acts.Clear,
 		C3.Plugins.Touch.Cnds.OnTouchStart,
 		C3.Plugins.Touch.Cnds.OnTouchEnd,
 		C3.Plugins.Touch.Cnds.IsInTouch
@@ -5426,6 +5443,7 @@ self.C3_JsPropNameTable = [
 	{DestroyObject: 0},
 	{base_types: 0},
 	{background: 0},
+	{FileChooser: 0},
 	{DragDrop: 0},
 	{MapElement: 0},
 	{LoadableDict: 0},
@@ -5463,6 +5481,7 @@ self.C3_JsPropNameTable = [
 	{complete_track: 0},
 	{finish_id: 0},
 	{next_id: 0},
+	{MAP_EXTERNAL: 0},
 	{MAP_NEW: 0},
 	{MAP_DELETE: 0},
 	{MAP_DOWNLOAD: 0},
@@ -5931,6 +5950,10 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() + 112);
+		},
+		p => {
+			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
 			return () => n0.ExpObject(n1.ExpInstVar());
 		},
@@ -5956,10 +5979,6 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() + 112);
-		},
-		p => {
-			const n0 = p._GetNode(0);
 			return () => (n0.ExpObject() + 64);
 		},
 		p => {
@@ -5972,6 +5991,7 @@ self.C3_ExpressionFuncs = [
 			return () => f0(f1(0, 999999999));
 		},
 		() => "Карта создана! Загружаем редактор...",
+		() => "Карта загружена! Открываем редактор...",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => (f0() + ".json");
@@ -5981,6 +6001,12 @@ self.C3_ExpressionFuncs = [
 			const n0 = p._GetNode(0);
 			return () => and("map_", n0.ExpInstVar());
 		},
+		() => "file",
+		p => {
+			const n0 = p._GetNode(0);
+			return () => n0.ExpObject(0);
+		},
+		() => "Сначала введите название карты",
 		() => "Scroll",
 		p => {
 			const v0 = p._GetNode(0).GetVar();
