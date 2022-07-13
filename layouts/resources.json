@@ -26,9 +26,34 @@
 						"about_to_destroy": false
 					},
 					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 4,
+						"uid": 5,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"previewSceneGraph": false
+						}
+					},
 					"world": {
-						"x": 1056,
-						"y": 800,
+						"x": 2240,
+						"y": 1760,
 						"width": 370,
 						"height": 200,
 						"originX": 0.5,
@@ -39,7 +64,7 @@
 							1,
 							1
 						],
-						"angle": 0,
+						"angle": 3.141592653589793,
 						"zElevation": 0
 					}
 				},
@@ -654,8 +679,8 @@
 						}
 					},
 					"world": {
-						"x": 256,
-						"y": 752,
+						"x": 1344,
+						"y": 160,
 						"width": 141,
 						"height": 141,
 						"originX": 0.5,
@@ -719,10 +744,10 @@
 						}
 					},
 					"world": {
-						"x": 480,
-						"y": 736,
-						"width": 60,
-						"height": 46,
+						"x": 1568,
+						"y": 160,
+						"width": 58,
+						"height": 48,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -784,8 +809,8 @@
 						}
 					},
 					"world": {
-						"x": 608,
-						"y": 752,
+						"x": 1696,
+						"y": 160,
 						"width": 68,
 						"height": 79,
 						"originX": 0.5,
@@ -825,6 +850,189 @@
 							1,
 							1
 						]
+					}
+				},
+				{
+					"type": "road",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Finish",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 4,
+					"instanceVariables": {
+						"placed": true,
+						"can_place": true,
+						"saved_x": 0,
+						"saved_y": 0,
+						"saved_angle": 0,
+						"selected": false,
+						"TurnAngle": 0,
+						"snapped_start": -1,
+						"snapped_end": -1
+					},
+					"behaviors": {
+						"DragDrop": {
+							"properties": {
+								"axes": "both",
+								"enabled": true
+							}
+						}
+					},
+					"effects": {
+						"TintRed": {
+							"parameters": {
+								"color": [
+									1,
+									0,
+									0,
+									1
+								]
+							}
+						},
+						"TintSelected": {
+							"parameters": {
+								"color": [
+									1,
+									1,
+									0,
+									1
+								]
+							}
+						}
+					},
+					"sceneGraphData": {
+						"parent-uid": null,
+						"uid": 4,
+						"children": [
+							{
+								"uid": 5,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"d": true,
+									"sm": "normal"
+								}
+							},
+							{
+								"uid": 72,
+								"flags": {
+									"x": true,
+									"y": true,
+									"z": true,
+									"w": true,
+									"h": true,
+									"a": true,
+									"d": true,
+									"sm": "normal"
+								}
+							}
+						],
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2240,
+						"y": 1760,
+						"width": 768,
+						"height": 2344,
+						"originX": 0.5,
+						"originY": 0.9914675767918089,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
+					"type": "SnapZone",
+					"properties": {
+						"initially-visible": true,
+						"origin": "bottom",
+						"wrap-horizontal": "repeat",
+						"wrap-vertical": "repeat",
+						"image-offset-x": 0,
+						"image-offset-y": 0,
+						"image-scale-x": 1,
+						"image-scale-y": 1,
+						"image-angle": 0
+					},
+					"uid": 72,
+					"instanceVariables": {
+						"isEnd": true,
+						"snap_to": 0,
+						"about_to_destroy": false
+					},
+					"behaviors": {},
+					"sceneGraphData": {
+						"parent-uid": 4,
+						"uid": 72,
+						"flags": {
+							"x": true,
+							"y": true,
+							"z": true,
+							"w": true,
+							"h": true,
+							"a": true,
+							"d": true,
+							"sm": "normal"
+						},
+						"preview": {
+							"transformX": 0,
+							"transformY": 0,
+							"transformZElevation": 0,
+							"transformW": 0,
+							"transformH": 0,
+							"transformA": 0,
+							"transformSX": 0,
+							"transformSY": 0,
+							"previewSceneGraph": false
+						}
+					},
+					"world": {
+						"x": 2240,
+						"y": -544,
+						"width": 370,
+						"height": 200,
+						"originX": 0.5,
+						"originY": 1,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
 					}
 				}
 			],

@@ -275,7 +275,7 @@
 									}
 								},
 								{
-									"callFunction": "AddSnapZones",
+									"callFunction": "RegenSnapZones",
 									"sid": 144854273136578,
 									"parameters": [
 										"road.UID"
@@ -316,7 +316,18 @@
 									}
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"callFunction": "CreateObject",
+									"sid": 957404289724842,
+									"parameters": [
+										"ThisLvl.At(loopindex(\"loadloop\"), 1)",
+										"ThisLvl.At(loopindex(\"loadloop\"), 2)",
+										"ThisLvl.At(loopindex(\"loadloop\"), 3)",
+										"ThisLvl.At(loopindex(\"loadloop\"), 4)"
+									]
+								}
+							],
 							"sid": 174580764401156,
 							"children": [
 								{
@@ -388,14 +399,15 @@
 											]
 										},
 										{
-											"callFunction": "AddSnapZones",
-											"sid": 482326539926653,
+											"callFunction": "RegenSnapZones",
+											"sid": 229753011929044,
 											"parameters": [
 												"road.UID"
 											]
 										}
 									],
-									"sid": 482686071855762
+									"sid": 482686071855762,
+									"disabled": true
 								},
 								{
 									"eventType": "block",
@@ -403,22 +415,178 @@
 										{
 											"id": "else",
 											"objectClass": "System",
-											"sid": 128055807563095
+											"sid": 128055807563095,
+											"disabled": true
 										}
 									],
+									"actions": [],
+									"sid": 742717348492648
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-last-created",
+											"objectClass": "System",
+											"sid": 672412894472912,
+											"parameters": {
+												"object": "MapElement"
+											}
+										},
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 898035717947265,
+											"parameters": {
+												"first-value": "MapElement.ObjectTypeName",
+												"comparison": 0,
+												"second-value": "\"road\""
+											}
+										}
+									],
+									"actions": [],
+									"sid": 170577670326502,
+									"disabled": true,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-last-created",
+													"objectClass": "System",
+													"sid": 942155189356257,
+													"parameters": {
+														"object": "road"
+													}
+												}
+											],
+											"actions": [
+												{
+													"callFunction": "check_placed",
+													"sid": 134278784365198,
+													"parameters": [
+														"road.UID"
+													]
+												}
+											],
+											"sid": 485020243739337,
+											"disabled": true
+										}
+									]
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 181724395622557,
+									"parameters": {
+										"object": "road"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 417087998501585,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-another-object",
+											"objectClass": "road",
+											"sid": 256660753803377,
+											"parameters": {
+												"object": "SnapZone"
+											}
+										},
+										{
+											"id": "for-each",
+											"objectClass": "System",
+											"sid": 108368174275131,
+											"parameters": {
+												"object": "SnapZone"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 396927954987610,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-boolean-instance-variable-set",
+													"objectClass": "SnapZone",
+													"sid": 616440577994235,
+													"parameters": {
+														"instance-variable": "about_to_destroy"
+													},
+													"isInverted": true
+												}
+											],
+											"actions": [
+												{
+													"id": "alert",
+													"objectClass": "Browser",
+													"sid": 530964795466425,
+													"disabled": true,
+													"parameters": {
+														"message": "\"Snap: \"&road.UID&\" \"&SnapZone.UID"
+													}
+												},
+												{
+													"callFunction": "snap",
+													"sid": 148027087399726,
+													"parameters": [
+														"road.UID",
+														"SnapZone.UID"
+													]
+												},
+												{
+													"id": "set-boolean-instvar",
+													"objectClass": "SnapZone",
+													"sid": 578928063812629,
+													"parameters": {
+														"instance-variable": "about_to_destroy",
+														"value": "true"
+													}
+												},
+												{
+													"id": "destroy",
+													"objectClass": "SnapZone",
+													"sid": 371247677282805
+												}
+											],
+											"sid": 974966957464042
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
 									"actions": [
 										{
-											"callFunction": "CreateObject",
-											"sid": 264241763051194,
+											"callFunction": "RegenSnapZones",
+											"sid": 855584101725114,
+											"disabled": true,
 											"parameters": [
-												"ThisLvl.At(loopindex(\"loadloop\"), 1)",
-												"ThisLvl.At(loopindex(\"loadloop\"), 2)",
-												"ThisLvl.At(loopindex(\"loadloop\"), 3)",
-												"ThisLvl.At(loopindex(\"loadloop\"), 4)"
+												"road.UID"
 											]
+										},
+										{
+											"id": "alert",
+											"objectClass": "Browser",
+											"sid": 589293569761369,
+											"disabled": true,
+											"parameters": {
+												"message": "\"create\"&newline&road.snapped_start&newline&road.snapped_end"
+											}
 										}
 									],
-									"sid": 742717348492648
+									"sid": 122564704111381
 								}
 							]
 						}
@@ -1155,7 +1323,7 @@
 					"children": [
 						{
 							"eventType": "comment",
-							"text": "Destroy prev map element meant to be placed (to be sure)"
+							"text": "Destroy prev map element meant to be placed (to be sure) \nEdit: why did I even do that?"
 						},
 						{
 							"eventType": "block",
@@ -1176,7 +1344,8 @@
 									"sid": 477764150470616
 								}
 							],
-							"sid": 700811317553602
+							"sid": 700811317553602,
+							"disabled": true
 						},
 						{
 							"eventType": "block",
@@ -4200,9 +4369,9 @@
 								{
 									"id": "set-from-json",
 									"objectClass": "subtype",
-									"sid": 474875354096753,
+									"sid": 453753316708408,
 									"parameters": {
-										"json": "\"{\"\"c3\"\":true,\"\"w\"\":{\"\"x\"\":240,\"\"y\"\":640,\"\"w\"\":150,\"\"h\"\":22,\"\"l\"\":593705883740258,\"\"zi\"\":12,\"\"oX\"\":0,\"\"oY\"\":0},\"\"data\"\":{\"\"title\"\":\"\"\"\",\"\"isEnabled\"\":true,\"\"id\"\":\"\"\"\",\"\"items\"\":[\"\"Камень 1\"\",\"\"Камень 2\"\",\"\"Камень 3\"\",\"\"Камень 4\"\",\"\"Камень 1 (мал.)\"\",\"\"Камень 2 (мал.)\"\",\"\"Камень 3 (мал.)\"\",\"\"Камень 4 (мал.)\"\",\"\"Шипы\"\"],\"\"selectedIndex\"\":-1,\"\"selectedIndices\"\":[]}}\""
+										"json": "\"{\"\"c3\"\":true,\"\"w\"\":{\"\"x\"\":240,\"\"y\"\":640,\"\"w\"\":150,\"\"h\"\":22,\"\"l\"\":593705883740258,\"\"zi\"\":12,\"\"oX\"\":0,\"\"oY\"\":0},\"\"data\"\":{\"\"title\"\":\"\"\"\",\"\"isEnabled\"\":true,\"\"id\"\":\"\"\"\",\"\"items\"\":[\"\"Камень 1\"\",\"\"Камень 2\"\",\"\"Камень 3\"\",\"\"Камень 4\"\",\"\"Камень 1 (мал.)\"\",\"\"Камень 2 (мал.)\"\",\"\"Камень 3 (мал.)\"\",\"\"Камень 4 (мал.)\"\",\"\"Шипы 1\"\",\"\"Шипы 2\"\",\"\"Шипы 3\"\",\"\"Шипы 4\"\"],\"\"selectedIndex\"\":0,\"\"selectedIndices\"\":[]}}\""
 									}
 								},
 								{
@@ -5374,7 +5543,7 @@
 			]
 		},
 		{
-			"functionName": "AddSnapZones",
+			"functionName": "RegenSnapZones",
 			"functionDescription": "",
 			"functionCategory": "Logic",
 			"functionReturnType": "none",
@@ -5447,7 +5616,44 @@
 							"sid": 755957666134967
 						}
 					],
-					"sid": 705145718550602
+					"sid": 705145718550602,
+					"disabled": true
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "has-children",
+							"objectClass": "road",
+							"sid": 402800893218028
+						},
+						{
+							"id": "pick-children",
+							"objectClass": "road",
+							"sid": 452649696243053,
+							"parameters": {
+								"child": "SnapZone",
+								"which": "own"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "SnapZone",
+							"sid": 476137230059147,
+							"parameters": {
+								"instance-variable": "about_to_destroy",
+								"value": "true"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "SnapZone",
+							"sid": 402816881054033
+						}
+					],
+					"sid": 876620273012002
 				},
 				{
 					"eventType": "block",
@@ -5463,55 +5669,107 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 763250530207547,
+					"children": [
 						{
-							"id": "spawn-another-object",
-							"objectClass": "road",
-							"sid": 323049491906208,
-							"parameters": {
-								"object": "SnapZone",
-								"layer": "\"Level\"",
-								"image-point": "\"Start\"",
-								"create-hierarchy": false
-							}
+							"eventType": "comment",
+							"text": "Check if we generate zones for start - it needs no start snap zone"
 						},
 						{
-							"id": "set-angle",
-							"objectClass": "SnapZone",
-							"sid": 290752037985321,
-							"parameters": {
-								"angle": "road.Angle + 180"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "road",
+									"sid": 246428914294593,
+									"parameters": {
+										"animation": "\"Start\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 863189419122304,
+									"parameters": {
+										"type": "log",
+										"message": "\"This is start - no start snap zone generated\""
+									}
+								}
+							],
+							"sid": 413820196377078
 						},
 						{
-							"id": "set-boolean-instvar",
-							"objectClass": "SnapZone",
-							"sid": 516229857052673,
-							"parameters": {
-								"instance-variable": "isEnd",
-								"value": "false"
-							}
-						},
-						{
-							"id": "set-instvar-value",
-							"objectClass": "SnapZone",
-							"sid": 212741105335693,
-							"parameters": {
-								"instance-variable": "snap_to",
-								"value": "road.UID"
-							}
-						},
-						{
-							"id": "alert",
-							"objectClass": "Browser",
-							"sid": 882881634761333,
-							"disabled": true,
-							"parameters": {
-								"message": "SnapZone.UID&\" \"&SnapZone.isEnd&\" \"&SnapZone.snap_to"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 512201569044507
+								}
+							],
+							"actions": [
+								{
+									"id": "spawn-another-object",
+									"objectClass": "road",
+									"sid": 690086334711207,
+									"parameters": {
+										"object": "SnapZone",
+										"layer": "\"Level\"",
+										"image-point": "\"Start\"",
+										"create-hierarchy": false
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 823851820083430,
+									"parameters": {
+										"type": "log",
+										"message": "\"Creating start snap zone...\""
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "SnapZone",
+									"sid": 736804410261304,
+									"parameters": {
+										"angle": "road.Angle - 180"
+									}
+								},
+								{
+									"id": "set-boolean-instvar",
+									"objectClass": "SnapZone",
+									"sid": 755804373074863,
+									"parameters": {
+										"instance-variable": "isEnd",
+										"value": "false"
+									}
+								},
+								{
+									"id": "set-instvar-value",
+									"objectClass": "SnapZone",
+									"sid": 429144177050730,
+									"parameters": {
+										"instance-variable": "snap_to",
+										"value": "road.UID"
+									}
+								},
+								{
+									"id": "alert",
+									"objectClass": "Browser",
+									"sid": 133458191683011,
+									"disabled": true,
+									"parameters": {
+										"message": "SnapZone.UID&\" \"&SnapZone.isEnd&\" \"&SnapZone.snap_to"
+									}
+								}
+							],
+							"sid": 534196857121891
 						}
-					],
-					"sid": 763250530207547
+					]
 				},
 				{
 					"eventType": "block",
@@ -5529,9 +5787,18 @@
 					],
 					"actions": [
 						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 868949537083801,
+							"parameters": {
+								"type": "log",
+								"message": "\"Creating end snap zone...\""
+							}
+						},
+						{
 							"id": "spawn-another-object",
 							"objectClass": "road",
-							"sid": 311452706044728,
+							"sid": 289586408079376,
 							"parameters": {
 								"object": "SnapZone",
 								"layer": "\"Level\"",
@@ -5542,7 +5809,7 @@
 						{
 							"id": "set-angle",
 							"objectClass": "SnapZone",
-							"sid": 152468534495217,
+							"sid": 788083981150379,
 							"parameters": {
 								"angle": "road.Angle + road.TurnAngle"
 							}
@@ -5550,7 +5817,7 @@
 						{
 							"id": "set-boolean-instvar",
 							"objectClass": "SnapZone",
-							"sid": 631027549441290,
+							"sid": 314303249750842,
 							"parameters": {
 								"instance-variable": "isEnd",
 								"value": "true"
@@ -5559,7 +5826,7 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "SnapZone",
-							"sid": 417095758940733,
+							"sid": 646901853532656,
 							"parameters": {
 								"instance-variable": "snap_to",
 								"value": "road.UID"
@@ -5568,14 +5835,97 @@
 						{
 							"id": "alert",
 							"objectClass": "Browser",
-							"sid": 967827670160603,
+							"sid": 656571581520765,
 							"disabled": true,
 							"parameters": {
 								"message": "SnapZone.UID&\" \"&SnapZone.isEnd&\" \"&SnapZone.snap_to"
 							}
 						}
 					],
-					"sid": 109173065961652
+					"sid": 109173065961652,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Check if we generate zones for finish - if both finish and start present, finish needs no end snap zone"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "is-animation-playing",
+									"objectClass": "road",
+									"sid": 160748630987245,
+									"parameters": {
+										"animation": "\"Finish\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 327974413284310,
+									"parameters": {
+										"type": "log",
+										"message": "\"Working with Finish here...\""
+									}
+								}
+							],
+							"sid": 551708284534605,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 680621948885841,
+											"parameters": {
+												"object": "road"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 690434536596993,
+											"parameters": {
+												"object": "road",
+												"expression": "road.AnimationName",
+												"comparison": 0,
+												"value": "\"Start\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 881922425044946,
+											"parameters": {
+												"type": "log",
+												"message": "\"Found start - deleting end snap zone\""
+											}
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "SnapZone",
+											"sid": 715482594655201,
+											"parameters": {
+												"instance-variable": "about_to_destroy",
+												"value": "true"
+											}
+										},
+										{
+											"id": "destroy",
+											"objectClass": "SnapZone",
+											"sid": 336657290802181
+										}
+									],
+									"sid": 906464086883572
+								}
+							]
+						}
+					]
 				}
 			]
 		},
@@ -5808,7 +6158,7 @@
 							],
 							"actions": [
 								{
-									"callFunction": "AddSnapZones",
+									"callFunction": "RegenSnapZones",
 									"sid": 585042488942698,
 									"disabled": true,
 									"parameters": [
@@ -6000,7 +6350,7 @@
 													}
 												},
 												{
-													"callFunction": "AddSnapZones",
+													"callFunction": "RegenSnapZones",
 													"sid": 688806125560867,
 													"parameters": [
 														"r1"
@@ -6050,7 +6400,7 @@
 													}
 												},
 												{
-													"callFunction": "AddSnapZones",
+													"callFunction": "RegenSnapZones",
 													"sid": 498826209689627,
 													"parameters": [
 														"r2"
@@ -6217,6 +6567,15 @@
 									}
 								},
 								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 209275825278722,
+									"parameters": {
+										"type": "log",
+										"message": "\"Created \"&MapElement.ObjectTypeName&\" with anim \"&object_animation&\" and UID \"&MapElement.UID"
+									}
+								},
+								{
 									"id": "set-enabled",
 									"objectClass": "MapElement",
 									"sid": 841152667282856,
@@ -6304,6 +6663,15 @@
 										}
 									],
 									"actions": [
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 240899149766924,
+											"parameters": {
+												"type": "log",
+												"message": "\"Total road elements: \"&road.Count&newline&\"Snap zone count: \"&SnapZone.Count"
+											}
+										},
 										{
 											"id": "set-instvar-value",
 											"objectClass": "road",
@@ -6394,7 +6762,7 @@
 											"conditions": [],
 											"actions": [
 												{
-													"callFunction": "AddSnapZones",
+													"callFunction": "RegenSnapZones",
 													"sid": 953694150604643,
 													"parameters": [
 														"road.UID"
@@ -6411,6 +6779,74 @@
 												}
 											],
 											"sid": 434506963901272
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "is-animation-playing",
+													"objectClass": "road",
+													"sid": 135299255951627,
+													"parameters": {
+														"animation": "\"Start\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-enabled",
+													"objectClass": "Start",
+													"sid": 873279810676442,
+													"parameters": {
+														"mode": "disabled"
+													}
+												},
+												{
+													"id": "set-checked",
+													"objectClass": "Start",
+													"sid": 766791188380115,
+													"parameters": {
+														"state": "unchecked"
+													}
+												}
+											],
+											"sid": 143532499015882,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-all",
+															"objectClass": "System",
+															"sid": 124747989003207,
+															"parameters": {
+																"object": "road"
+															}
+														},
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 824373924511312,
+															"parameters": {
+																"object": "road",
+																"expression": "road.AnimationName",
+																"comparison": 0,
+																"value": "\"Finish\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"callFunction": "RegenSnapZones",
+															"sid": 902202837201930,
+															"parameters": [
+																"road.UID"
+															]
+														}
+													],
+													"sid": 400017892985489
+												}
+											]
 										}
 									]
 								}
@@ -7322,7 +7758,7 @@
 											}
 										},
 										{
-											"callFunction": "AddSnapZones",
+											"callFunction": "RegenSnapZones",
 											"sid": 196248632900968,
 											"parameters": [
 												"r1"
@@ -7381,7 +7817,7 @@
 											}
 										},
 										{
-											"callFunction": "AddSnapZones",
+											"callFunction": "RegenSnapZones",
 											"sid": 474425961851901,
 											"parameters": [
 												"r2"
@@ -7578,7 +8014,7 @@
 							"conditions": [],
 							"actions": [
 								{
-									"callFunction": "AddSnapZones",
+									"callFunction": "RegenSnapZones",
 									"sid": 133124408188322,
 									"parameters": [
 										"MapElement.UID"
@@ -7885,6 +8321,16 @@
 			"children": [
 				{
 					"eventType": "variable",
+					"name": "Sprint",
+					"type": "boolean",
+					"initialValue": "false",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 501210511952042
+				},
+				{
+					"eventType": "variable",
 					"name": "error",
 					"type": "boolean",
 					"initialValue": "false",
@@ -7968,12 +8414,12 @@
 						{
 							"id": "pick-by-comparison",
 							"objectClass": "System",
-							"sid": 900064874084519,
+							"sid": 302173470816950,
 							"parameters": {
 								"object": "road",
 								"expression": "road.AnimationName",
 								"comparison": 0,
-								"value": "\"Finish\""
+								"value": "\"Start\""
 							}
 						}
 					],
@@ -8001,11 +8447,11 @@
 						{
 							"id": "set-at-xy",
 							"objectClass": "ThisLvl",
-							"sid": 711319139971651,
+							"sid": 110080999238911,
 							"parameters": {
 								"x": "1",
 								"y": "1",
-								"value": "\"road_Finish\""
+								"value": "\"road_Start\""
 							}
 						},
 						{
@@ -8041,15 +8487,6 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 902644439475073,
-							"parameters": {
-								"variable": "finish_id",
-								"value": "road.UID"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
 							"sid": 898569639334385,
 							"parameters": {
 								"variable": "next_id",
@@ -8070,7 +8507,169 @@
 							}
 						}
 					],
-					"sid": 561238318144984
+					"sid": 561238318144984,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-all",
+									"objectClass": "System",
+									"sid": 517047426479652,
+									"parameters": {
+										"object": "road"
+									}
+								},
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 764564452327055,
+									"parameters": {
+										"object": "road",
+										"expression": "road.AnimationName",
+										"comparison": 0,
+										"value": "\"Finish\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 214943484853319,
+									"parameters": {
+										"variable": "finish_id",
+										"value": "road.UID"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 642801076476933,
+									"parameters": {
+										"variable": "Sprint",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 249900598819567
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 615225551407947
+						},
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 452880011893933,
+							"parameters": {
+								"object": "road",
+								"expression": "road.AnimationName",
+								"comparison": 0,
+								"value": "\"Finish\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-at-xy",
+							"objectClass": "ThisLvl",
+							"sid": 305108766531229,
+							"parameters": {
+								"x": "0",
+								"y": "0",
+								"value": "1"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "ThisLvl",
+							"sid": 977127402054670,
+							"parameters": {
+								"x": "1",
+								"y": "0",
+								"value": "road.UID"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "ThisLvl",
+							"sid": 591641074021864,
+							"parameters": {
+								"x": "1",
+								"y": "1",
+								"value": "\"road_Finish\""
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "ThisLvl",
+							"sid": 467623203721205,
+							"parameters": {
+								"x": "1",
+								"y": "2",
+								"value": "road.X"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "ThisLvl",
+							"sid": 572952433296203,
+							"parameters": {
+								"x": "1",
+								"y": "3",
+								"value": "road.Y"
+							}
+						},
+						{
+							"id": "set-at-xy",
+							"objectClass": "ThisLvl",
+							"sid": 825589245821276,
+							"parameters": {
+								"x": "1",
+								"y": "4",
+								"value": "road.Angle"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 605549014277123,
+							"parameters": {
+								"variable": "finish_id",
+								"value": "road.UID"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 515152107102715,
+							"parameters": {
+								"variable": "next_id",
+								"value": "road.snapped_end"
+							}
+						},
+						{
+							"type": "comment",
+							"text": "Set placed to false for later checks"
+						},
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "road",
+							"sid": 715936157166153,
+							"parameters": {
+								"instance-variable": "placed",
+								"value": "false"
+							}
+						}
+					],
+					"sid": 378805375776243
 				},
 				{
 					"eventType": "block",
@@ -8085,9 +8684,9 @@
 						{
 							"id": "alert",
 							"objectClass": "Browser",
-							"sid": 918654596145188,
+							"sid": 715743778556849,
 							"parameters": {
-								"message": "\"Не удалось найти сегмент старта/финиша. Какого...?\""
+								"message": "\"Не удалось найти сегмент финиша. Какого...?\""
 							}
 						},
 						{
@@ -8122,11 +8721,11 @@
 						{
 							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 382923820639003,
+							"sid": 983920944368601,
 							"parameters": {
-								"variable": "finish_id",
+								"variable": "next_id",
 								"comparison": 1,
-								"value": "next_id"
+								"value": "-1"
 							}
 						}
 					],
@@ -8134,67 +8733,12 @@
 					"sid": 993997850670440,
 					"children": [
 						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 974126394224509,
-									"parameters": {
-										"variable": "next_id",
-										"comparison": 0,
-										"value": "-1"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "alert",
-									"objectClass": "Browser",
-									"sid": 140779685153799,
-									"parameters": {
-										"message": "\"Осторожно: редактору не удалось завершить кольцо трассы. Эту карту пока не стоит экспортировать.\""
-									}
-								},
-								{
-									"id": "set-at-xy",
-									"objectClass": "ThisLvl",
-									"sid": 467113854842623,
-									"parameters": {
-										"x": "0",
-										"y": "1",
-										"value": "0"
-									}
-								},
-								{
-									"id": "set-boolean-eventvar",
-									"objectClass": "System",
-									"sid": 283160372287955,
-									"parameters": {
-										"variable": "complete_track",
-										"value": "false"
-									}
-								},
-								{
-									"id": "stop-loop",
-									"objectClass": "System",
-									"sid": 937271361081698
-								}
-							],
-							"sid": 712511695437743
-						},
-						{
 							"eventType": "comment",
 							"text": "Write checkpoints"
 						},
 						{
 							"eventType": "block",
 							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 512888934013219
-								},
 								{
 									"id": "pick-by-unique-id",
 									"objectClass": "road",
@@ -8213,6 +8757,15 @@
 										"where": "back",
 										"value": "0",
 										"axis": "x"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 950338131450748,
+									"parameters": {
+										"type": "log",
+										"message": "\"Adding to save: \"&next_id"
 									}
 								},
 								{
@@ -8299,6 +8852,268 @@
 								}
 							],
 							"sid": 724879917782524
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 414841593896007,
+									"parameters": {
+										"variable": "next_id",
+										"comparison": 0,
+										"value": "-1"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "alert",
+									"objectClass": "Browser",
+									"sid": 435728925125008,
+									"parameters": {
+										"message": "\"Осторожно: редактору не удалось завершить кольцо трассы. Эту карту пока не стоит экспортировать.\""
+									}
+								},
+								{
+									"id": "set-at-xy",
+									"objectClass": "ThisLvl",
+									"sid": 895952374833887,
+									"parameters": {
+										"x": "0",
+										"y": "1",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 579458008301478,
+									"parameters": {
+										"variable": "complete_track",
+										"value": "false"
+									}
+								},
+								{
+									"id": "stop-loop",
+									"objectClass": "System",
+									"sid": 818022555600331
+								}
+							],
+							"sid": 729607030462933
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 626539017423727,
+									"parameters": {
+										"variable": "next_id",
+										"comparison": 0,
+										"value": "finish_id"
+									}
+								},
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "road",
+									"sid": 363042025856857,
+									"parameters": {
+										"unique-id": "next_id"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "alert",
+									"objectClass": "Browser",
+									"sid": 563963442653425,
+									"disabled": true,
+									"parameters": {
+										"message": "\"Осторожно: редактору не удалось завершить трассу. Эту карту пока не стоит экспортировать.\""
+									}
+								},
+								{
+									"id": "set-at-xy",
+									"objectClass": "ThisLvl",
+									"sid": 364556202391961,
+									"disabled": true,
+									"parameters": {
+										"x": "0",
+										"y": "1",
+										"value": "0"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 283540943237266,
+									"disabled": true,
+									"parameters": {
+										"variable": "complete_track",
+										"value": "false"
+									}
+								},
+								{
+									"id": "stop-loop",
+									"objectClass": "System",
+									"sid": 121342293397687,
+									"disabled": true
+								}
+							],
+							"sid": 922905871605035,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 383421469085933,
+											"parameters": {
+												"variable": "Sprint"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "push",
+											"objectClass": "ThisLvl",
+											"sid": 226914628786926,
+											"parameters": {
+												"where": "back",
+												"value": "0",
+												"axis": "x"
+											}
+										},
+										{
+											"id": "set-at-xy",
+											"objectClass": "ThisLvl",
+											"sid": 611371147369215,
+											"parameters": {
+												"x": "0",
+												"y": "0",
+												"value": "Self.At(0, 0) + 1"
+											}
+										},
+										{
+											"id": "set-at-xy",
+											"objectClass": "ThisLvl",
+											"sid": 408153858442455,
+											"parameters": {
+												"x": "Self.Width - 1",
+												"y": "0",
+												"value": "road.UID"
+											}
+										},
+										{
+											"id": "set-at-xy",
+											"objectClass": "ThisLvl",
+											"sid": 635443714833705,
+											"parameters": {
+												"x": "Self.Width - 1",
+												"y": "1",
+												"value": "\"road_\"&road.AnimationName"
+											}
+										},
+										{
+											"id": "set-at-xy",
+											"objectClass": "ThisLvl",
+											"sid": 811901551230001,
+											"parameters": {
+												"x": "Self.Width - 1",
+												"y": "2",
+												"value": "road.X"
+											}
+										},
+										{
+											"id": "set-at-xy",
+											"objectClass": "ThisLvl",
+											"sid": 405580991545825,
+											"parameters": {
+												"x": "Self.Width - 1",
+												"y": "3",
+												"value": "road.Y"
+											}
+										},
+										{
+											"id": "set-at-xy",
+											"objectClass": "ThisLvl",
+											"sid": 178411935783137,
+											"parameters": {
+												"x": "Self.Width - 1",
+												"y": "4",
+												"value": "road.Angle"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 398449107339703,
+											"parameters": {
+												"variable": "next_id",
+												"value": "road.snapped_end"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "Set placed to false for later checks"
+										},
+										{
+											"id": "set-boolean-instvar",
+											"objectClass": "road",
+											"sid": 967318832132437,
+											"parameters": {
+												"instance-variable": "placed",
+												"value": "false"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 938170984022085,
+											"parameters": {
+												"type": "log",
+												"message": "\"Finished a sprint track...\""
+											}
+										}
+									],
+									"sid": 959391262487209
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 311567248564338
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 644665131380146,
+											"parameters": {
+												"variable": "next_id",
+												"value": "-1"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 339329332294131,
+											"parameters": {
+												"type": "log",
+												"message": "\"Finished a circuit...\""
+											}
+										}
+									],
+									"sid": 742138877104873
+								}
+							]
 						}
 					]
 				},
@@ -8512,6 +9327,238 @@
 				}
 			],
 			"sid": 875669852644472
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-selection",
+					"objectClass": "type",
+					"sid": 372921990812374,
+					"parameters": {
+						"comparison": 1,
+						"index": "0"
+					}
+				},
+				{
+					"id": "compare-value",
+					"objectClass": "SetTurnAngle",
+					"sid": 667428912569150,
+					"parameters": {
+						"comparison": 1,
+						"value": "0"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 495602244820067,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 327115936845671
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "Start",
+							"sid": 824185842212871,
+							"parameters": {
+								"mode": "disabled"
+							}
+						}
+					],
+					"sid": 667024626108407
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "else",
+					"objectClass": "System",
+					"sid": 633751632466316
+				}
+			],
+			"actions": [],
+			"sid": 349845094170277,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 253881536637966,
+							"parameters": {
+								"object": "road",
+								"expression": "road.AnimationName",
+								"comparison": 0,
+								"value": "\"Start\""
+							}
+						},
+						{
+							"id": "is-boolean-instance-variable-set",
+							"objectClass": "road",
+							"sid": 246866012760535,
+							"parameters": {
+								"instance-variable": "placed"
+							}
+						}
+					],
+					"actions": [],
+					"sid": 368405984054606
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 686829374701356
+						},
+						{
+							"id": "trigger-once-while-true",
+							"objectClass": "System",
+							"sid": 961791702818176
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "Start",
+							"sid": 124461966486037,
+							"parameters": {
+								"mode": "enabled"
+							}
+						}
+					],
+					"sid": 348485744020411
+				}
+			]
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-eventvar",
+					"objectClass": "System",
+					"sid": 675636229999611,
+					"parameters": {
+						"variable": "EdState",
+						"comparison": 0,
+						"value": "EDITOR_NEW"
+					}
+				},
+				{
+					"id": "compare-selection",
+					"objectClass": "type",
+					"sid": 853184393788254,
+					"parameters": {
+						"comparison": 0,
+						"index": "0"
+					}
+				},
+				{
+					"id": "compare-value",
+					"objectClass": "SetTurnAngle",
+					"sid": 891460042879527,
+					"parameters": {
+						"comparison": 0,
+						"value": "0"
+					}
+				},
+				{
+					"id": "pick-by-unique-id",
+					"objectClass": "road",
+					"sid": 229280063946458,
+					"parameters": {
+						"unique-id": "EditUID"
+					}
+				}
+			],
+			"actions": [],
+			"sid": 457930583687763,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-checked",
+							"objectClass": "Start",
+							"sid": 165886617566855
+						}
+					],
+					"actions": [],
+					"sid": 385437866238817,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 474839243293528
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "road",
+									"sid": 721724994298737,
+									"parameters": {
+										"animation": "\"Start\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 933312394210144
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-checked",
+							"objectClass": "Start",
+							"sid": 547337332358729,
+							"isInverted": true
+						}
+					],
+					"actions": [],
+					"sid": 961639763141809,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 400701801125152
+								}
+							],
+							"actions": [
+								{
+									"id": "set-animation",
+									"objectClass": "road",
+									"sid": 278988660974323,
+									"parameters": {
+										"animation": "\"r0\"",
+										"from": "beginning"
+									}
+								}
+							],
+							"sid": 599933234398673
+						}
+					]
+				}
+			]
 		}
 	],
 	"sid": 290152901591731
