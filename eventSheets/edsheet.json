@@ -144,6 +144,15 @@
 					}
 				},
 				{
+					"id": "set-layer-scale",
+					"objectClass": "System",
+					"sid": 443796538264865,
+					"parameters": {
+						"layer": "\"Background\"",
+						"scale": "0.175"
+					}
+				},
+				{
 					"id": "set-eventvar-value",
 					"objectClass": "System",
 					"sid": 246353665715332,
@@ -225,81 +234,40 @@
 			"children": [
 				{
 					"eventType": "comment",
-					"text": "In case you start preview of the editor layout"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "is-in-preview",
-							"objectClass": "System",
-							"sid": 898626106838177
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 695587742993957,
-							"parameters": {
-								"variable": "MapSlot",
-								"comparison": 0,
-								"value": "-1"
-							}
-						}
-					],
-					"actions": [],
-					"sid": 130341415114771,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 488801415349261,
-									"parameters": {
-										"object": "road",
-										"expression": "road.AnimationName",
-										"comparison": 0,
-										"value": "\"Finish\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-enabled",
-									"objectClass": "road",
-									"sid": 369619336323099,
-									"behaviorType": "DragDrop",
-									"parameters": {
-										"state": "disabled"
-									}
-								},
-								{
-									"callFunction": "RegenSnapZones",
-									"sid": 144854273136578,
-									"parameters": [
-										"road.UID"
-									]
-								}
-							],
-							"sid": 676026224057122
-						}
-					]
-				},
-				{
-					"eventType": "comment",
 					"text": "Load existing map"
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "else",
+							"id": "compare-eventvar",
 							"objectClass": "System",
-							"sid": 739351540652020
+							"sid": 606303966837724,
+							"parameters": {
+								"variable": "MapSlot",
+								"comparison": 1,
+								"value": "-1"
+							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "start-group",
+							"objectClass": "Browser",
+							"sid": 322615933168352,
+							"parameters": {
+								"group-name": "\"Loading map \"&MapSlot&\"...\""
+							}
+						},
+						{
+							"id": "set-selection",
+							"objectClass": "choose_back",
+							"sid": 678720785836176,
+							"parameters": {
+								"index": "ThisLvl.At(0, 2, 0)"
+							}
+						}
+					],
 					"sid": 448984671851948,
 					"children": [
 						{
@@ -334,143 +302,100 @@
 									"eventType": "block",
 									"conditions": [
 										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 601440199634528,
-											"parameters": {
-												"first-value": "loopindex(\"loadloop\")",
-												"comparison": 0,
-												"second-value": "1"
-											}
-										},
-										{
 											"id": "pick-last-created",
 											"objectClass": "System",
-											"sid": 144182756034276,
+											"sid": 407743795754992,
 											"parameters": {
 												"object": "road"
 											}
 										}
 									],
-									"actions": [
-										{
-											"callFunction": "MoveObject",
-											"sid": 880564256417947,
-											"disabled": true,
-											"parameters": [
-												"ThisLvl.At(ThisLvl.CurX, 2)",
-												"ThisLvl.At(ThisLvl.CurX, 3)",
-												"ThisLvl.At(ThisLvl.CurX, 4)",
-												"15000",
-												"15000"
-											]
-										},
-										{
-											"id": "set-position",
-											"objectClass": "road",
-											"sid": 853283945164409,
-											"parameters": {
-												"x": "ThisLvl.At(loopindex(\"loadloop\"), 2)",
-												"y": "ThisLvl.At(loopindex(\"loadloop\"), 3)"
-											}
-										},
-										{
-											"id": "set-angle",
-											"objectClass": "road",
-											"sid": 640099529014089,
-											"parameters": {
-												"angle": "ThisLvl.At(loopindex(\"loadloop\"), 4)"
-											}
-										},
-										{
-											"id": "set-enabled",
-											"objectClass": "road",
-											"sid": 247069324181539,
-											"behaviorType": "DragDrop",
-											"parameters": {
-												"state": "disabled"
-											}
-										},
-										{
-											"callFunction": "check_placed",
-											"sid": 324764345346905,
-											"parameters": [
-												"road.UID"
-											]
-										},
-										{
-											"callFunction": "RegenSnapZones",
-											"sid": 229753011929044,
-											"parameters": [
-												"road.UID"
-											]
-										}
-									],
-									"sid": 482686071855762,
-									"disabled": true
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "else",
-											"objectClass": "System",
-											"sid": 128055807563095,
-											"disabled": true
-										}
-									],
 									"actions": [],
-									"sid": 742717348492648
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-last-created",
-											"objectClass": "System",
-											"sid": 672412894472912,
-											"parameters": {
-												"object": "MapElement"
-											}
-										},
-										{
-											"id": "compare-two-values",
-											"objectClass": "System",
-											"sid": 898035717947265,
-											"parameters": {
-												"first-value": "MapElement.ObjectTypeName",
-												"comparison": 0,
-												"second-value": "\"road\""
-											}
-										}
-									],
-									"actions": [],
-									"sid": 170577670326502,
-									"disabled": true,
+									"sid": 861479398484653,
 									"children": [
 										{
 											"eventType": "block",
 											"conditions": [
 												{
-													"id": "pick-last-created",
-													"objectClass": "System",
-													"sid": 942155189356257,
+													"id": "is-overlapping-another-object",
+													"objectClass": "road",
+													"sid": 493555349315600,
 													"parameters": {
-														"object": "road"
+														"object": "SnapZone"
+													}
+												},
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 151324239816803,
+													"parameters": {
+														"object": "SnapZone",
+														"expression": "SnapZone.snap_to",
+														"comparison": 1,
+														"value": "road.UID"
+													}
+												},
+												{
+													"id": "for-each",
+													"objectClass": "System",
+													"sid": 221361334389320,
+													"parameters": {
+														"object": "SnapZone"
 													}
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 788355341024871,
+											"children": [
 												{
-													"callFunction": "check_placed",
-													"sid": 134278784365198,
-													"parameters": [
-														"road.UID"
-													]
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-boolean-instance-variable-set",
+															"objectClass": "SnapZone",
+															"sid": 465403014947058,
+															"parameters": {
+																"instance-variable": "about_to_destroy"
+															},
+															"isInverted": true
+														}
+													],
+													"actions": [
+														{
+															"id": "alert",
+															"objectClass": "Browser",
+															"sid": 530541524662165,
+															"disabled": true,
+															"parameters": {
+																"message": "\"Snap: \"&road.UID&\" \"&SnapZone.UID"
+															}
+														},
+														{
+															"callFunction": "snap",
+															"sid": 719859736028277,
+															"parameters": [
+																"road.UID",
+																"SnapZone.UID"
+															]
+														},
+														{
+															"id": "set-boolean-instvar",
+															"objectClass": "SnapZone",
+															"sid": 442336656480869,
+															"parameters": {
+																"instance-variable": "about_to_destroy",
+																"value": "true"
+															}
+														},
+														{
+															"id": "destroy",
+															"objectClass": "SnapZone",
+															"sid": 693676998685831
+														}
+													],
+													"sid": 648305389691655
 												}
-											],
-											"sid": 485020243739337,
-											"disabled": true
+											]
 										}
 									]
 								}
@@ -478,119 +403,38 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [
+							"conditions": [],
+							"actions": [
 								{
-									"id": "for-each",
-									"objectClass": "System",
-									"sid": 181724395622557,
-									"parameters": {
-										"object": "road"
-									}
+									"id": "end-group",
+									"objectClass": "Browser",
+									"sid": 629698749911385
 								}
 							],
-							"actions": [],
-							"sid": 417087998501585,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "is-overlapping-another-object",
-											"objectClass": "road",
-											"sid": 256660753803377,
-											"parameters": {
-												"object": "SnapZone"
-											}
-										},
-										{
-											"id": "for-each",
-											"objectClass": "System",
-											"sid": 108368174275131,
-											"parameters": {
-												"object": "SnapZone"
-											}
-										}
-									],
-									"actions": [],
-									"sid": 396927954987610,
-									"children": [
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "is-boolean-instance-variable-set",
-													"objectClass": "SnapZone",
-													"sid": 616440577994235,
-													"parameters": {
-														"instance-variable": "about_to_destroy"
-													},
-													"isInverted": true
-												}
-											],
-											"actions": [
-												{
-													"id": "alert",
-													"objectClass": "Browser",
-													"sid": 530964795466425,
-													"disabled": true,
-													"parameters": {
-														"message": "\"Snap: \"&road.UID&\" \"&SnapZone.UID"
-													}
-												},
-												{
-													"callFunction": "snap",
-													"sid": 148027087399726,
-													"parameters": [
-														"road.UID",
-														"SnapZone.UID"
-													]
-												},
-												{
-													"id": "set-boolean-instvar",
-													"objectClass": "SnapZone",
-													"sid": 578928063812629,
-													"parameters": {
-														"instance-variable": "about_to_destroy",
-														"value": "true"
-													}
-												},
-												{
-													"id": "destroy",
-													"objectClass": "SnapZone",
-													"sid": 371247677282805
-												}
-											],
-											"sid": 974966957464042
-										}
-									]
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"callFunction": "RegenSnapZones",
-											"sid": 855584101725114,
-											"disabled": true,
-											"parameters": [
-												"road.UID"
-											]
-										},
-										{
-											"id": "alert",
-											"objectClass": "Browser",
-											"sid": 589293569761369,
-											"disabled": true,
-											"parameters": {
-												"message": "\"create\"&newline&road.snapped_start&newline&road.snapped_end"
-											}
-										}
-									],
-									"sid": 122564704111381
-								}
-							]
+							"sid": 771590311736489
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 949099474936607
+						}
+					],
+					"actions": [
+						{
+							"id": "alert",
+							"objectClass": "Browser",
+							"sid": 580169094911901,
+							"parameters": {
+								"message": "\"Не там Preview начал!\""
+							}
+						}
+					],
+					"sid": 324708885421297
 				}
 			]
 		},
@@ -1015,6 +859,15 @@
 						"layer": "\"Level\"",
 						"scale": "scale.Value / 8 + 0.05"
 					}
+				},
+				{
+					"id": "set-layer-scale",
+					"objectClass": "System",
+					"sid": 889749178680234,
+					"parameters": {
+						"layer": "\"Background\"",
+						"scale": "scale.Value / 8 + 0.05"
+					}
 				}
 			],
 			"sid": 799129767608662
@@ -1321,32 +1174,6 @@
 					],
 					"sid": 893000413334201,
 					"children": [
-						{
-							"eventType": "comment",
-							"text": "Destroy prev map element meant to be placed (to be sure) \nEdit: why did I even do that?"
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-unique-id",
-									"objectClass": "MapElement",
-									"sid": 394298609416291,
-									"parameters": {
-										"unique-id": "EditUID"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "destroy",
-									"objectClass": "MapElement",
-									"sid": 477764150470616
-								}
-							],
-							"sid": 700811317553602,
-							"disabled": true
-						},
 						{
 							"eventType": "block",
 							"conditions": [],
@@ -1737,6 +1564,14 @@
 					"parameters": {
 						"object": "MapElement"
 					}
+				},
+				{
+					"id": "pick-topbottom",
+					"objectClass": "MapElement",
+					"sid": 238320043726569,
+					"parameters": {
+						"which": "top"
+					}
 				}
 			],
 			"actions": [],
@@ -1773,15 +1608,6 @@
 							],
 							"actions": [
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 283060831093303,
-									"parameters": {
-										"variable": "EdState",
-										"value": "EDITOR_READY"
-									}
-								},
-								{
 									"id": "log",
 									"objectClass": "Browser",
 									"sid": 766613047523464,
@@ -1796,6 +1622,15 @@
 									"parameters": [
 										"MapElement.UID"
 									]
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 411855146409118,
+									"parameters": {
+										"variable": "EdState",
+										"value": "EDITOR_READY"
+									}
 								}
 							],
 							"sid": 150294532716583
@@ -2043,18 +1878,7 @@
 									}
 								}
 							],
-							"actions": [
-								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 733562392403207,
-									"disabled": true,
-									"parameters": {
-										"type": "log",
-										"message": "SnapZone.PickedCount"
-									}
-								}
-							],
+							"actions": [],
 							"sid": 983583880264377,
 							"children": [
 								{
@@ -2073,18 +1897,7 @@
 											}
 										}
 									],
-									"actions": [
-										{
-											"id": "log",
-											"objectClass": "Browser",
-											"sid": 862901959773595,
-											"disabled": true,
-											"parameters": {
-												"type": "log",
-												"message": "\"obj: \"&SnapZone.UID"
-											}
-										}
-									],
+									"actions": [],
 									"sid": 117483263863745,
 									"children": [
 										{
@@ -2174,15 +1987,6 @@
 													"parameters": {
 														"instance-variable": "can_place",
 														"value": "false"
-													}
-												},
-												{
-													"id": "alert",
-													"objectClass": "Browser",
-													"sid": 549005193492255,
-													"disabled": true,
-													"parameters": {
-														"message": "\"red\""
 													}
 												}
 											],
@@ -2551,14 +2355,6 @@
 			"conditions": [
 				{
 					"id": "pick-by-unique-id",
-					"objectClass": "road",
-					"sid": 931771756319968,
-					"parameters": {
-						"unique-id": "uid"
-					}
-				},
-				{
-					"id": "pick-by-unique-id",
 					"objectClass": "SnapZone",
 					"sid": 841909100261598,
 					"parameters": {
@@ -2574,6 +2370,14 @@
 					"disabled": true,
 					"parameters": {
 						"message": "\"Snap in: \"&road.UID&newline&SnapZone.UID&\" \"&SnapZone.snap_to&\" \"&SnapZone.isEnd"
+					}
+				},
+				{
+					"id": "start-group",
+					"objectClass": "Browser",
+					"sid": 533047319754140,
+					"parameters": {
+						"group-name": "\"Snap \"&uid&\" to \"&SnapZone.snap_to"
 					}
 				}
 			],
@@ -2611,58 +2415,16 @@
 							}
 						}
 					],
-					"actions": [
-						{
-							"id": "set-position",
-							"objectClass": "road",
-							"sid": 177639681053958,
-							"parameters": {
-								"x": "SnapZone.X",
-								"y": "SnapZone.Y"
-							}
-						},
-						{
-							"id": "set-angle",
-							"objectClass": "road",
-							"sid": 702548363020234,
-							"parameters": {
-								"angle": "SnapZone.Angle"
-							}
-						},
-						{
-							"id": "set-value",
-							"objectClass": "SetAngle",
-							"sid": 823797522850857,
-							"parameters": {
-								"value": "MapElement.Angle > 180 ? MapElement.Angle - 360 : MapElement.Angle"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "Angle_text",
-							"sid": 926745698084305,
-							"parameters": {
-								"text": "\"Угол: \"&SetAngle.Value&\"°\""
-							}
-						}
-					],
+					"actions": [],
 					"sid": 906599142477804,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "pick-all",
-									"objectClass": "System",
-									"sid": 262608377941484,
-									"parameters": {
-										"object": "road"
-									}
-								},
-								{
 									"id": "pick-by-unique-id",
 									"objectClass": "road",
-									"sid": 543067488903620,
+									"sid": 473471372042902,
 									"parameters": {
 										"unique-id": "SnapZone.snap_to"
 									}
@@ -2672,76 +2434,99 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "road",
-									"sid": 441255606793621,
+									"sid": 382750694585259,
 									"parameters": {
 										"instance-variable": "snapped_end",
 										"value": "uid"
 									}
 								},
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 710891276436149,
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 402843232489110,
 									"parameters": {
-										"variable": "snapped_id",
-										"value": "road.UID"
+										"type": "log",
+										"message": "\"Part 1:\"&newline&\"End: \"&road.snapped_end"
 									}
 								}
 							],
-							"sid": 589713256458053,
-							"children": [
+							"sid": 119664525122054
+						},
+						{
+							"eventType": "block",
+							"conditions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-all",
-											"objectClass": "System",
-											"sid": 737015685764138,
-											"parameters": {
-												"object": "road"
-											}
-										},
-										{
-											"id": "pick-by-unique-id",
-											"objectClass": "road",
-											"sid": 836281506881974,
-											"parameters": {
-												"unique-id": "uid"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-instvar-value",
-											"objectClass": "road",
-											"sid": 262523840611681,
-											"parameters": {
-												"instance-variable": "snapped_start",
-												"value": "snapped_id"
-											}
-										},
-										{
-											"id": "alert",
-											"objectClass": "Browser",
-											"sid": 495728082578530,
-											"disabled": true,
-											"parameters": {
-												"message": "\"Res: \"&newline&uid&\" \"&snapped_id"
-											}
-										},
-										{
-											"id": "alert",
-											"objectClass": "Browser",
-											"sid": 779703261463936,
-											"disabled": true,
-											"parameters": {
-												"message": "\"Snapped to end\""
-											}
-										}
-									],
-									"sid": 452979915831741
+									"id": "pick-by-unique-id",
+									"objectClass": "road",
+									"sid": 149735269245005,
+									"parameters": {
+										"unique-id": "uid"
+									}
 								}
-							]
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "road",
+									"sid": 100949527372582,
+									"parameters": {
+										"instance-variable": "snapped_start",
+										"value": "SnapZone.snap_to"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 604708573120160,
+									"parameters": {
+										"type": "log",
+										"message": "\"Part 2:\"&newline&\"Start: \"&road.snapped_start"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "road",
+									"sid": 177639681053958,
+									"parameters": {
+										"x": "SnapZone.X",
+										"y": "SnapZone.Y"
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "road",
+									"sid": 702548363020234,
+									"parameters": {
+										"angle": "SnapZone.Angle"
+									}
+								},
+								{
+									"id": "set-value",
+									"objectClass": "SetAngle",
+									"sid": 823797522850857,
+									"parameters": {
+										"value": "MapElement.Angle > 180 ? MapElement.Angle - 360 : MapElement.Angle"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "Angle_text",
+									"sid": 926745698084305,
+									"parameters": {
+										"text": "\"Угол: \"&SetAngle.Value&\"°\""
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 228485079678147,
+									"parameters": {
+										"type": "log",
+										"message": "\"New position: [\"&road.X&\", \"&road.Y&\"]\"&newline&\"New angle: \"&road.Angle"
+									}
+								}
+							],
+							"sid": 614240696796358
 						}
 					]
 				},
@@ -2758,67 +2543,16 @@
 							"isInverted": true
 						}
 					],
-					"actions": [
-						{
-							"id": "set-angle",
-							"objectClass": "road",
-							"sid": 471930243791136,
-							"parameters": {
-								"angle": "SnapZone.Angle - road.TurnAngle + 180"
-							}
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 785256370520358,
-							"parameters": {
-								"variable": "vector",
-								"value": "distance(0, 0, (road.ImagePointX(\"End\") - road.X), (road.ImagePointY(\"End\") - road.Y))"
-							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "road",
-							"sid": 546891851436996,
-							"parameters": {
-								"x": "SnapZone.X - (road.ImagePointX(\"End\") - road.X)",
-								"y": "SnapZone.Y - (road.ImagePointY(\"End\") - road.Y)"
-							}
-						},
-						{
-							"id": "set-value",
-							"objectClass": "SetAngle",
-							"sid": 344627752085668,
-							"parameters": {
-								"value": "MapElement.Angle > 180 ? MapElement.Angle - 360 : MapElement.Angle"
-							}
-						},
-						{
-							"id": "set-text",
-							"objectClass": "Angle_text",
-							"sid": 315370934340733,
-							"parameters": {
-								"text": "\"Угол: \"&SetAngle.Value&\"°\""
-							}
-						}
-					],
+					"actions": [],
 					"sid": 399298182731244,
 					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "pick-all",
-									"objectClass": "System",
-									"sid": 340615629674098,
-									"parameters": {
-										"object": "road"
-									}
-								},
-								{
 									"id": "pick-by-unique-id",
 									"objectClass": "road",
-									"sid": 433337800789452,
+									"sid": 921777431658788,
 									"parameters": {
 										"unique-id": "SnapZone.snap_to"
 									}
@@ -2828,78 +2562,122 @@
 								{
 									"id": "set-instvar-value",
 									"objectClass": "road",
-									"sid": 837014824603616,
+									"sid": 901090457293020,
 									"parameters": {
 										"instance-variable": "snapped_start",
 										"value": "uid"
 									}
 								},
 								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 303273929186873,
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 642426891732503,
 									"parameters": {
-										"variable": "snapped_id",
-										"value": "road.UID"
+										"type": "log",
+										"message": "\"Part 1:\"&newline&\"Start: \"&road.snapped_start"
 									}
 								}
 							],
-							"sid": 458719305210088,
-							"children": [
+							"sid": 367324947178935
+						},
+						{
+							"eventType": "block",
+							"conditions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-all",
-											"objectClass": "System",
-											"sid": 375233621810778,
-											"parameters": {
-												"object": "road"
-											}
-										},
-										{
-											"id": "pick-by-unique-id",
-											"objectClass": "road",
-											"sid": 801273797389647,
-											"parameters": {
-												"unique-id": "uid"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-instvar-value",
-											"objectClass": "road",
-											"sid": 973314743583004,
-											"parameters": {
-												"instance-variable": "snapped_end",
-												"value": "snapped_id"
-											}
-										},
-										{
-											"id": "alert",
-											"objectClass": "Browser",
-											"sid": 586946548251980,
-											"disabled": true,
-											"parameters": {
-												"message": "\"Res: \"&newline&uid&\" \"&snapped_id"
-											}
-										},
-										{
-											"id": "alert",
-											"objectClass": "Browser",
-											"sid": 107586314894389,
-											"disabled": true,
-											"parameters": {
-												"message": "\"Snapped to start\""
-											}
-										}
-									],
-									"sid": 634455894661448
+									"id": "pick-by-unique-id",
+									"objectClass": "road",
+									"sid": 954830917850827,
+									"parameters": {
+										"unique-id": "uid"
+									}
 								}
-							]
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "road",
+									"sid": 677326209023323,
+									"parameters": {
+										"instance-variable": "snapped_end",
+										"value": "SnapZone.snap_to"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 446277629059357,
+									"parameters": {
+										"type": "log",
+										"message": "\"Part 2:\"&newline&\"End: \"&road.snapped_end"
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "road",
+									"sid": 182183589627681,
+									"parameters": {
+										"angle": "SnapZone.Angle - road.TurnAngle + 180"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 808086456580581,
+									"parameters": {
+										"variable": "vector",
+										"value": "distance(0, 0, (road.ImagePointX(\"End\") - road.X), (road.ImagePointY(\"End\") - road.Y))"
+									}
+								},
+								{
+									"id": "set-position",
+									"objectClass": "road",
+									"sid": 352182963472816,
+									"parameters": {
+										"x": "SnapZone.X - (road.ImagePointX(\"End\") - road.X)",
+										"y": "SnapZone.Y - (road.ImagePointY(\"End\") - road.Y)"
+									}
+								},
+								{
+									"id": "set-value",
+									"objectClass": "SetAngle",
+									"sid": 527747547016413,
+									"parameters": {
+										"value": "MapElement.Angle > 180 ? MapElement.Angle - 360 : MapElement.Angle"
+									}
+								},
+								{
+									"id": "set-text",
+									"objectClass": "Angle_text",
+									"sid": 458849064162925,
+									"parameters": {
+										"text": "\"Угол: \"&SetAngle.Value&\"°\""
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 272867993015821,
+									"parameters": {
+										"type": "log",
+										"message": "\"New position: [\"&road.X&\", \"&road.Y&\"]\"&newline&\"New angle: \"&road.Angle"
+									}
+								}
+							],
+							"sid": 249023963986292
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "end-group",
+							"objectClass": "Browser",
+							"sid": 473573569497263
+						}
+					],
+					"sid": 374199440081899
 				}
 			]
 		},
@@ -4875,6 +4653,535 @@
 			"sid": 903642033661495
 		},
 		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "GUI_modify",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "add_ten",
+							"sid": 191204662332920
+						}
+					],
+					"actions": [],
+					"sid": 332173643970126,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "add_ten",
+									"sid": 167803282869390,
+									"parameters": {
+										"unique-id": "65"
+									}
+								},
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "MapElement",
+									"sid": 408340342234008,
+									"parameters": {
+										"unique-id": "EditUID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "ChangeAngle",
+									"sid": 434975464324292,
+									"parameters": [
+										"10"
+									]
+								}
+							],
+							"sid": 529451307668544
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "subtract_ten",
+							"sid": 146057069305465
+						}
+					],
+					"actions": [],
+					"sid": 944132201568081,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "subtract_ten",
+									"sid": 821923082741058,
+									"parameters": {
+										"unique-id": "64"
+									}
+								},
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "MapElement",
+									"sid": 856574052793321,
+									"parameters": {
+										"unique-id": "EditUID"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "ChangeAngle",
+									"sid": 701892953165665,
+									"parameters": [
+										"-10"
+									]
+								}
+							],
+							"sid": 608638194208301
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-changed",
+							"objectClass": "SetAngle",
+							"sid": 156257913504215
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 665646534675787,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "Angle_text",
+							"sid": 186840861492174,
+							"parameters": {
+								"text": "\"Угол: \"&SetAngle.Value&\"°\""
+							}
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "MapElement",
+							"sid": 999303314964999,
+							"parameters": {
+								"angle": "SetAngle.Value"
+							}
+						}
+					],
+					"sid": 318581755444278
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "DestroyObject",
+							"sid": 939264659219645
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 654615873630222,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"type": "comment",
+							"text": "If element was moved during edit, get it back where it was to delete correctly"
+						},
+						{
+							"id": "set-angle",
+							"objectClass": "MapElement",
+							"sid": 259444510663124,
+							"parameters": {
+								"angle": "Self.saved_angle"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "MapElement",
+							"sid": 991899248611000,
+							"parameters": {
+								"x": "Self.saved_x",
+								"y": "Self.saved_y"
+							}
+						}
+					],
+					"sid": 724938400326757,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 902145035089867,
+									"parameters": {
+										"first-value": "MapElement.ObjectTypeName",
+										"comparison": 0,
+										"second-value": "\"road\""
+									}
+								},
+								{
+									"id": "is-animation-playing",
+									"objectClass": "MapElement",
+									"sid": 768469591396005,
+									"parameters": {
+										"animation": "\"Finish\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "alert",
+									"objectClass": "Browser",
+									"sid": 342434156248430,
+									"parameters": {
+										"message": "\"Нельзя удалять старт/финиш - тогда трассы не получится!\""
+									}
+								}
+							],
+							"sid": 197342488345091
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 970810599820666
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "AddAction",
+									"sid": 311997858970094,
+									"parameters": [
+										"ACTION_DELETE",
+										"MapElement.UID"
+									]
+								},
+								{
+									"callFunction": "RemoveObject",
+									"sid": 279839649246019,
+									"parameters": [
+										"MapElement.X",
+										"MapElement.Y"
+									]
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 160781159838352,
+									"parameters": {
+										"variable": "EdState",
+										"value": "EDITOR_READY"
+									}
+								}
+							],
+							"sid": 800321498506807
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "CreateObject",
+							"sid": 254731143232358
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 886809365032361,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DeselectObject",
+							"sid": 768641363501706,
+							"parameters": [
+								"MapElement.UID"
+							]
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 932712369848744,
+							"parameters": {
+								"variable": "EdState",
+								"value": "EDITOR_READY"
+							}
+						}
+					],
+					"sid": 807442911312959
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 604433595253086,
+							"parameters": {
+								"key": 13
+							}
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 603986782921557,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"callFunction": "DeselectObject",
+							"sid": 243021462293652,
+							"parameters": [
+								"MapElement.UID"
+							]
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 185136838203826,
+							"parameters": {
+								"variable": "EdState",
+								"value": "EDITOR_READY"
+							}
+						}
+					],
+					"sid": 570877357967734
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "Cancel",
+							"sid": 486364014694991
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 376575484583470,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle",
+							"objectClass": "MapElement",
+							"sid": 874298512933398,
+							"parameters": {
+								"angle": "Self.saved_angle"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "MapElement",
+							"sid": 471580979631504,
+							"parameters": {
+								"x": "Self.saved_x",
+								"y": "Self.saved_y"
+							}
+						},
+						{
+							"callFunction": "DeselectObject",
+							"sid": 788075029584427,
+							"parameters": [
+								"MapElement.UID"
+							]
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 642527557266974,
+							"parameters": {
+								"variable": "EdState",
+								"value": "EDITOR_READY"
+							}
+						}
+					],
+					"sid": 518129939326601
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 246189924090786,
+							"parameters": {
+								"key": 27
+							}
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 932311065245387,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle",
+							"objectClass": "MapElement",
+							"sid": 409852360298768,
+							"parameters": {
+								"angle": "Self.saved_angle"
+							}
+						},
+						{
+							"id": "set-position",
+							"objectClass": "MapElement",
+							"sid": 357291247978410,
+							"parameters": {
+								"x": "Self.saved_x",
+								"y": "Self.saved_y"
+							}
+						},
+						{
+							"callFunction": "DeselectObject",
+							"sid": 196682934774963,
+							"parameters": [
+								"MapElement.UID"
+							]
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 761483172682160,
+							"parameters": {
+								"variable": "EdState",
+								"value": "EDITOR_READY"
+							}
+						}
+					],
+					"sid": 823277251550127
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "Z_bottom",
+							"sid": 422045099980851
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 361409506282238,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-bottom",
+							"objectClass": "MapElement",
+							"sid": 898244196468259
+						}
+					],
+					"sid": 319345942065771
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "Z_top",
+							"sid": 195108673080857
+						},
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "MapElement",
+							"sid": 598161067955523,
+							"parameters": {
+								"unique-id": "EditUID"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "move-to-top",
+							"objectClass": "MapElement",
+							"sid": 797517700058343
+						}
+					],
+					"sid": 348863336178693
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "Z_down",
+							"sid": 583976298852659
+						}
+					],
+					"actions": [],
+					"sid": 589005087748448,
+					"children": [
+						{
+							"eventType": "script",
+							"script": "let edited = runtime.getInstanceByUid(runtime.globalVars.EditUID);\nlet prev = {zIndex: -Infinity, isStub: true};\nfor (let element of runtime.objects.MapElement.getAllInstances()) {\n\tif (edited.testOverlap(element) && edited.zIndex > element.zIndex && element.zIndex > prev.zIndex) {\n\t\tprev = element;\n\t}\n};\nif (!prev.isStub){\n\tedited.moveAdjacentToInstance(prev, false);\n}"
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-clicked",
+							"objectClass": "Z_up",
+							"sid": 830641605969335
+						}
+					],
+					"actions": [],
+					"sid": 522685849340849,
+					"children": [
+						{
+							"eventType": "script",
+							"script": "let edited = runtime.getInstanceByUid(runtime.globalVars.EditUID);\nlet next = {zIndex: Infinity, isStub: true};\nfor (let element of runtime.objects.MapElement.getAllInstances()) {\n\tif (edited.testOverlap(element) && edited.zIndex < element.zIndex && element.zIndex < next.zIndex) {\n\t\tnext = element;\n\t}\n};\nif (!next.isStub) {\n\tedited.moveAdjacentToInstance(next, true);\n}"
+						}
+					]
+				}
+			],
+			"sid": 355003011969289
+		},
+		{
 			"functionName": "AddAction",
 			"functionDescription": "",
 			"functionCategory": "Buffer",
@@ -5570,12 +5877,11 @@
 			],
 			"actions": [
 				{
-					"id": "alert",
+					"id": "start-group",
 					"objectClass": "Browser",
-					"sid": 716725173556750,
-					"disabled": true,
+					"sid": 770090828945355,
 					"parameters": {
-						"message": "road_uid&newline&road.snapped_start&\" \"&road.snapped_end"
+						"group-name": "\"Generating snap zones for \"&road_uid"
 					}
 				}
 			],
@@ -5584,40 +5890,6 @@
 				{
 					"eventType": "comment",
 					"text": "Delete old snap zones if present"
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 114517649122353,
-							"parameters": {
-								"object": "SnapZone",
-								"expression": "SnapZone.snap_to",
-								"comparison": 0,
-								"value": "road.UID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-boolean-instvar",
-							"objectClass": "SnapZone",
-							"sid": 957537413164670,
-							"parameters": {
-								"instance-variable": "about_to_destroy",
-								"value": "true"
-							}
-						},
-						{
-							"id": "destroy",
-							"objectClass": "SnapZone",
-							"sid": 755957666134967
-						}
-					],
-					"sid": 705145718550602,
-					"disabled": true
 				},
 				{
 					"eventType": "block",
@@ -5723,15 +5995,6 @@
 									}
 								},
 								{
-									"id": "log",
-									"objectClass": "Browser",
-									"sid": 823851820083430,
-									"parameters": {
-										"type": "log",
-										"message": "\"Creating start snap zone...\""
-									}
-								},
-								{
 									"id": "set-angle",
 									"objectClass": "SnapZone",
 									"sid": 736804410261304,
@@ -5758,12 +6021,27 @@
 									}
 								},
 								{
-									"id": "alert",
-									"objectClass": "Browser",
-									"sid": 133458191683011,
-									"disabled": true,
+									"id": "add-child",
+									"objectClass": "road",
+									"sid": 601870247542538,
 									"parameters": {
-										"message": "SnapZone.UID&\" \"&SnapZone.isEnd&\" \"&SnapZone.snap_to"
+										"child": "SnapZone",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": true,
+										"transform-h": true,
+										"transform-a": true,
+										"transform-z-elevation": true,
+										"destroy-with-parent": true
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 279685632384268,
+									"parameters": {
+										"type": "log",
+										"message": "\"Created start snap zone\"&newline&\"UID: \"&SnapZone.UID&newline&\"Road to snap: \"&SnapZone.snap_to&newline&\"Snaps to segment end: \"&SnapZone.isEnd"
 									}
 								}
 							],
@@ -5786,15 +6064,6 @@
 						}
 					],
 					"actions": [
-						{
-							"id": "log",
-							"objectClass": "Browser",
-							"sid": 868949537083801,
-							"parameters": {
-								"type": "log",
-								"message": "\"Creating end snap zone...\""
-							}
-						},
 						{
 							"id": "spawn-another-object",
 							"objectClass": "road",
@@ -5833,12 +6102,27 @@
 							}
 						},
 						{
-							"id": "alert",
-							"objectClass": "Browser",
-							"sid": 656571581520765,
-							"disabled": true,
+							"id": "add-child",
+							"objectClass": "road",
+							"sid": 119041375102035,
 							"parameters": {
-								"message": "SnapZone.UID&\" \"&SnapZone.isEnd&\" \"&SnapZone.snap_to"
+								"child": "SnapZone",
+								"transform-x": true,
+								"transform-y": true,
+								"transform-w": true,
+								"transform-h": true,
+								"transform-a": true,
+								"transform-z-elevation": true,
+								"destroy-with-parent": true
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 130725934011659,
+							"parameters": {
+								"type": "log",
+								"message": "\"Created end snap zone\"&newline&\"UID: \"&SnapZone.UID&newline&\"Road to snap: \"&SnapZone.snap_to&newline&\"Snaps to segment end: \"&SnapZone.isEnd"
 							}
 						}
 					],
@@ -5900,10 +6184,10 @@
 										{
 											"id": "log",
 											"objectClass": "Browser",
-											"sid": 881922425044946,
+											"sid": 644022731362742,
 											"parameters": {
 												"type": "log",
-												"message": "\"Found start - deleting end snap zone\""
+												"message": "\"Found start segment - deleting end snap zone\""
 											}
 										},
 										{
@@ -5926,6 +6210,55 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "road",
+							"sid": 892536791327530,
+							"parameters": {
+								"instance-variable": "snapped_end",
+								"comparison": 1,
+								"value": "-1"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "road",
+							"sid": 402958361470855,
+							"parameters": {
+								"instance-variable": "snapped_start",
+								"comparison": 1,
+								"value": "-1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 305418931245578,
+							"parameters": {
+								"type": "log",
+								"message": "\"No snap zones were generated\""
+							}
+						}
+					],
+					"sid": 446667243447900
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "end-group",
+							"objectClass": "Browser",
+							"sid": 955790558645713
+						}
+					],
+					"sid": 587745198884888
 				}
 			]
 		},
@@ -5974,7 +6307,16 @@
 			],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "start-group",
+					"objectClass": "Browser",
+					"sid": 127865725106315,
+					"parameters": {
+						"group-name": "\"Moving object\""
+					}
+				}
+			],
 			"sid": 425751430849304,
 			"children": [
 				{
@@ -6090,6 +6432,18 @@
 							"sid": 748729876351632
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "end-group",
+							"objectClass": "Browser",
+							"sid": 526221144912224
+						}
+					],
+					"sid": 526016594368064
 				}
 			]
 		},
@@ -6117,7 +6471,16 @@
 			],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "start-group",
+					"objectClass": "Browser",
+					"sid": 236262355887617,
+					"parameters": {
+						"group-name": "\"Removing object\""
+					}
+				}
+			],
 			"sid": 456008044770153,
 			"children": [
 				{
@@ -6272,39 +6635,6 @@
 											"parameters": {
 												"message": "\"Delete\"&newline&r1&newline&r2"
 											}
-										},
-										{
-											"id": "wait",
-											"objectClass": "System",
-											"sid": 193358985102875,
-											"disabled": true,
-											"parameters": {
-												"seconds": "dt"
-											}
-										},
-										{
-											"id": "wait-for-previous-actions",
-											"objectClass": "System",
-											"sid": 737382421459081,
-											"disabled": true
-										},
-										{
-											"id": "signal",
-											"objectClass": "System",
-											"sid": 341678026304094,
-											"disabled": true,
-											"parameters": {
-												"tag": "\"destroyed1\""
-											}
-										},
-										{
-											"id": "signal",
-											"objectClass": "System",
-											"sid": 435225998201102,
-											"disabled": true,
-											"parameters": {
-												"tag": "\"destroyed2\""
-											}
 										}
 									],
 									"sid": 357303181066650,
@@ -6432,6 +6762,18 @@
 							"sid": 808755471332528
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "end-group",
+							"objectClass": "Browser",
+							"sid": 387911665751486
+						}
+					],
+					"sid": 925519118636556
 				}
 			]
 		},
@@ -6473,7 +6815,16 @@
 			],
 			"eventType": "function-block",
 			"conditions": [],
-			"actions": [],
+			"actions": [
+				{
+					"id": "start-group",
+					"objectClass": "Browser",
+					"sid": 359614665201617,
+					"parameters": {
+						"group-name": "\"Creating new object\""
+					}
+				}
+			],
 			"sid": 620701370934290,
 			"children": [
 				{
@@ -6569,10 +6920,10 @@
 								{
 									"id": "log",
 									"objectClass": "Browser",
-									"sid": 209275825278722,
+									"sid": 479126071490327,
 									"parameters": {
 										"type": "log",
-										"message": "\"Created \"&MapElement.ObjectTypeName&\" with anim \"&object_animation&\" and UID \"&MapElement.UID"
+										"message": "\"Spawned \"&MapElement.ObjectTypeName&newline&\"Animation:  \"&object_animation&newline&\"UID: \"&MapElement.UID"
 									}
 								},
 								{
@@ -6611,15 +6962,6 @@
 									}
 								},
 								{
-									"id": "alert",
-									"objectClass": "Browser",
-									"sid": 873271620849676,
-									"disabled": true,
-									"parameters": {
-										"message": "changes_buffer.At(changes_buffer.current_action, 5)"
-									}
-								},
-								{
 									"id": "set-animation",
 									"objectClass": "MapElement",
 									"sid": 706748916986632,
@@ -6635,6 +6977,15 @@
 									"parameters": {
 										"x": "x",
 										"y": "y"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 285833181589977,
+									"parameters": {
+										"type": "log",
+										"message": "\"Position: [\"&MapElement.X&\", \"&MapElement.Y&\"]\"&newline&\"Angle: \"&MapElement.Angle"
 									}
 								}
 							],
@@ -6680,6 +7031,15 @@
 												"instance-variable": "TurnAngle",
 												"value": "(left(object_animation, 1) = \"l\" ? -1 : 1) * int(right(object_animation, len(object_animation)-1))"
 											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 557193817246112,
+											"parameters": {
+												"type": "log",
+												"message": "\"Road turn angle: \"&road.TurnAngle"
+											}
 										}
 									],
 									"sid": 162220564443334,
@@ -6722,15 +7082,6 @@
 													],
 													"actions": [
 														{
-															"id": "alert",
-															"objectClass": "Browser",
-															"sid": 927382048687714,
-															"disabled": true,
-															"parameters": {
-																"message": "\"Snap: \"&road.UID&\" \"&SnapZone.UID"
-															}
-														},
-														{
 															"callFunction": "snap",
 															"sid": 603597254945246,
 															"parameters": [
@@ -6769,12 +7120,12 @@
 													]
 												},
 												{
-													"id": "alert",
+													"id": "log",
 													"objectClass": "Browser",
-													"sid": 517470525021203,
-													"disabled": true,
+													"sid": 491637721523374,
 													"parameters": {
-														"message": "\"create\"&newline&road.snapped_start&newline&road.snapped_end"
+														"type": "log",
+														"message": "\"Now has following snap zones attached: \"&newline&road.snapped_start&newline&road.snapped_end"
 													}
 												}
 											],
@@ -6807,6 +7158,15 @@
 													"sid": 766791188380115,
 													"parameters": {
 														"state": "unchecked"
+													}
+												},
+												{
+													"id": "log",
+													"objectClass": "Browser",
+													"sid": 491227311876175,
+													"parameters": {
+														"type": "warn",
+														"message": "\"Created track start road segment\""
 													}
 												}
 											],
@@ -6842,6 +7202,15 @@
 															"parameters": [
 																"road.UID"
 															]
+														},
+														{
+															"id": "log",
+															"objectClass": "Browser",
+															"sid": 627987839434136,
+															"parameters": {
+																"type": "log",
+																"message": "\"Finish segment now has following snap zones attached: \"&newline&road.snapped_start&newline&road.snapped_end"
+															}
 														}
 													],
 													"sid": 400017892985489
@@ -6853,529 +7222,20 @@
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "end-group",
+							"objectClass": "Browser",
+							"sid": 813794994041323
+						}
+					],
+					"sid": 411733441990472
 				}
 			]
-		},
-		{
-			"eventType": "group",
-			"disabled": false,
-			"title": "GUI_modify",
-			"description": "",
-			"isActiveOnStart": true,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-clicked",
-							"objectClass": "add_ten",
-							"sid": 337920110102100
-						}
-					],
-					"actions": [],
-					"sid": 408790823824617,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-unique-id",
-									"objectClass": "add_ten",
-									"sid": 984305145729245,
-									"parameters": {
-										"unique-id": "65"
-									}
-								},
-								{
-									"id": "pick-by-unique-id",
-									"objectClass": "MapElement",
-									"sid": 821663760772386,
-									"parameters": {
-										"unique-id": "EditUID"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-value",
-									"objectClass": "SetAngle",
-									"sid": 193186381187594,
-									"parameters": {
-										"value": "clamp(Self.Value + 10, Self.Minimum, Self.Maximum)"
-									}
-								},
-								{
-									"id": "set-text",
-									"objectClass": "Angle_text",
-									"sid": 639070280275851,
-									"parameters": {
-										"text": "\"Угол: \"&SetAngle.Value&\"°\""
-									}
-								},
-								{
-									"id": "set-angle",
-									"objectClass": "MapElement",
-									"sid": 611767501004101,
-									"parameters": {
-										"angle": "SetAngle.Value"
-									}
-								},
-								{
-									"callFunction": "check_placed",
-									"sid": 431992255150985,
-									"parameters": [
-										"MapElement.UID"
-									]
-								},
-								{
-									"id": "set-value",
-									"objectClass": "SetAngle",
-									"sid": 506557245191629,
-									"parameters": {
-										"value": "MapElement.Angle > 180 ? MapElement.Angle - 360 : MapElement.Angle"
-									}
-								},
-								{
-									"id": "set-text",
-									"objectClass": "Angle_text",
-									"sid": 733312754608406,
-									"parameters": {
-										"text": "\"Угол: \"&SetAngle.Value&\"°\""
-									}
-								}
-							],
-							"sid": 884452693836216
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-clicked",
-							"objectClass": "subtract_ten",
-							"sid": 982356251804798
-						}
-					],
-					"actions": [],
-					"sid": 996661900963495,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-unique-id",
-									"objectClass": "subtract_ten",
-									"sid": 925858206058156,
-									"parameters": {
-										"unique-id": "64"
-									}
-								},
-								{
-									"id": "pick-by-unique-id",
-									"objectClass": "MapElement",
-									"sid": 748696582907053,
-									"parameters": {
-										"unique-id": "EditUID"
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-value",
-									"objectClass": "SetAngle",
-									"sid": 334673391354042,
-									"parameters": {
-										"value": "clamp(Self.Value - 10, Self.Minimum, Self.Maximum)"
-									}
-								},
-								{
-									"id": "set-text",
-									"objectClass": "Angle_text",
-									"sid": 482467193505539,
-									"parameters": {
-										"text": "\"Угол: \"&SetAngle.Value&\"°\""
-									}
-								},
-								{
-									"id": "set-angle",
-									"objectClass": "MapElement",
-									"sid": 840767046222618,
-									"parameters": {
-										"angle": "SetAngle.Value"
-									}
-								},
-								{
-									"callFunction": "check_placed",
-									"sid": 636919268366814,
-									"parameters": [
-										"MapElement.UID"
-									]
-								},
-								{
-									"id": "set-value",
-									"objectClass": "SetAngle",
-									"sid": 313435649159469,
-									"parameters": {
-										"value": "MapElement.Angle > 180 ? MapElement.Angle - 360 : MapElement.Angle"
-									}
-								},
-								{
-									"id": "set-text",
-									"objectClass": "Angle_text",
-									"sid": 501620394688596,
-									"parameters": {
-										"text": "\"Угол: \"&SetAngle.Value&\"°\""
-									}
-								}
-							],
-							"sid": 107324099162256
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-changed",
-							"objectClass": "SetAngle",
-							"sid": 614667738511500
-						},
-						{
-							"id": "pick-by-unique-id",
-							"objectClass": "MapElement",
-							"sid": 330498911841105,
-							"parameters": {
-								"unique-id": "EditUID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-text",
-							"objectClass": "Angle_text",
-							"sid": 569077391277552,
-							"parameters": {
-								"text": "\"Угол: \"&SetAngle.Value&\"°\""
-							}
-						},
-						{
-							"id": "set-angle",
-							"objectClass": "MapElement",
-							"sid": 194782838536415,
-							"parameters": {
-								"angle": "SetAngle.Value"
-							}
-						}
-					],
-					"sid": 629108601749795
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-clicked",
-							"objectClass": "DestroyObject",
-							"sid": 445193644168063
-						},
-						{
-							"id": "pick-by-unique-id",
-							"objectClass": "MapElement",
-							"sid": 846610152810331,
-							"parameters": {
-								"unique-id": "EditUID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"type": "comment",
-							"text": "If element was moved during edit, get it back where it was to delete correctly"
-						},
-						{
-							"id": "set-angle",
-							"objectClass": "MapElement",
-							"sid": 514938658564153,
-							"parameters": {
-								"angle": "Self.saved_angle"
-							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "MapElement",
-							"sid": 246709272580458,
-							"parameters": {
-								"x": "Self.saved_x",
-								"y": "Self.saved_y"
-							}
-						}
-					],
-					"sid": 247458149420623,
-					"children": [
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-two-values",
-									"objectClass": "System",
-									"sid": 730724711488563,
-									"parameters": {
-										"first-value": "MapElement.ObjectTypeName",
-										"comparison": 0,
-										"second-value": "\"road\""
-									}
-								},
-								{
-									"id": "is-animation-playing",
-									"objectClass": "MapElement",
-									"sid": 821974994028793,
-									"parameters": {
-										"animation": "\"Finish\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "alert",
-									"objectClass": "Browser",
-									"sid": 630857991524302,
-									"parameters": {
-										"message": "\"Нельзя удалять старт/финиш - тогда трассы не получится!\""
-									}
-								}
-							],
-							"sid": 635869759904504
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "else",
-									"objectClass": "System",
-									"sid": 506304520903934
-								}
-							],
-							"actions": [
-								{
-									"callFunction": "AddAction",
-									"sid": 833444800399826,
-									"parameters": [
-										"ACTION_DELETE",
-										"MapElement.UID"
-									]
-								},
-								{
-									"callFunction": "RemoveObject",
-									"sid": 691193792424141,
-									"parameters": [
-										"MapElement.X",
-										"MapElement.Y"
-									]
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 803279621519590,
-									"parameters": {
-										"variable": "EdState",
-										"value": "EDITOR_READY"
-									}
-								}
-							],
-							"sid": 662985697820297
-						}
-					]
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-clicked",
-							"objectClass": "CreateObject",
-							"sid": 200384510668524
-						},
-						{
-							"id": "pick-by-unique-id",
-							"objectClass": "MapElement",
-							"sid": 573598977650004,
-							"parameters": {
-								"unique-id": "EditUID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "DeselectObject",
-							"sid": 211032357414132,
-							"parameters": [
-								"MapElement.UID"
-							]
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 588412996126668,
-							"parameters": {
-								"variable": "EdState",
-								"value": "EDITOR_READY"
-							}
-						}
-					],
-					"sid": 490508524477581
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-key-pressed",
-							"objectClass": "Keyboard",
-							"sid": 672350287979709,
-							"parameters": {
-								"key": 13
-							}
-						},
-						{
-							"id": "pick-by-unique-id",
-							"objectClass": "MapElement",
-							"sid": 330210096377055,
-							"parameters": {
-								"unique-id": "EditUID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"callFunction": "DeselectObject",
-							"sid": 933063095451287,
-							"parameters": [
-								"MapElement.UID"
-							]
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 135401825834016,
-							"parameters": {
-								"variable": "EdState",
-								"value": "EDITOR_READY"
-							}
-						}
-					],
-					"sid": 135956536344479
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-clicked",
-							"objectClass": "Cancel",
-							"sid": 867591610605210
-						},
-						{
-							"id": "pick-by-unique-id",
-							"objectClass": "MapElement",
-							"sid": 126950172224789,
-							"parameters": {
-								"unique-id": "EditUID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-angle",
-							"objectClass": "MapElement",
-							"sid": 127045383198409,
-							"parameters": {
-								"angle": "Self.saved_angle"
-							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "MapElement",
-							"sid": 573398484779766,
-							"parameters": {
-								"x": "Self.saved_x",
-								"y": "Self.saved_y"
-							}
-						},
-						{
-							"callFunction": "DeselectObject",
-							"sid": 432062541650365,
-							"parameters": [
-								"MapElement.UID"
-							]
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 327965565487919,
-							"parameters": {
-								"variable": "EdState",
-								"value": "EDITOR_READY"
-							}
-						}
-					],
-					"sid": 737330010671357
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "on-key-pressed",
-							"objectClass": "Keyboard",
-							"sid": 662822673642472,
-							"parameters": {
-								"key": 27
-							}
-						},
-						{
-							"id": "pick-by-unique-id",
-							"objectClass": "MapElement",
-							"sid": 330277006407768,
-							"parameters": {
-								"unique-id": "EditUID"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "set-angle",
-							"objectClass": "MapElement",
-							"sid": 488155755058515,
-							"parameters": {
-								"angle": "Self.saved_angle"
-							}
-						},
-						{
-							"id": "set-position",
-							"objectClass": "MapElement",
-							"sid": 106206269519436,
-							"parameters": {
-								"x": "Self.saved_x",
-								"y": "Self.saved_y"
-							}
-						},
-						{
-							"callFunction": "DeselectObject",
-							"sid": 349667823454635,
-							"parameters": [
-								"MapElement.UID"
-							]
-						},
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 609002958419262,
-							"parameters": {
-								"variable": "EdState",
-								"value": "EDITOR_READY"
-							}
-						}
-					],
-					"sid": 328438666217900
-				}
-			],
-			"sid": 670847739112696
 		},
 		{
 			"functionName": "SelectObject",
@@ -7515,15 +7375,6 @@
 					"parameters": {
 						"text": "\"Угол: \"&SetAngle.Value&\"°\""
 					}
-				},
-				{
-					"id": "move-to-object",
-					"objectClass": "MapElement",
-					"sid": 663242191984864,
-					"parameters": {
-						"where": "in-front",
-						"object": "road"
-					}
 				}
 			],
 			"sid": 543444421275037,
@@ -7652,197 +7503,87 @@
 						},
 						{
 							"eventType": "block",
-							"conditions": [],
-							"actions": [
+							"conditions": [
 								{
-									"id": "set-collisions-enabled",
-									"objectClass": "MapElement",
-									"sid": 270607582754222,
-									"disabled": true,
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 758284263695878,
 									"parameters": {
-										"collisions": "disabled"
+										"variable": "r1",
+										"comparison": 1,
+										"value": "-1"
 									}
 								},
 								{
-									"id": "alert",
-									"objectClass": "Browser",
-									"sid": 879524088570544,
-									"disabled": true,
+									"id": "pick-by-unique-id",
+									"objectClass": "road",
+									"sid": 176083601149161,
 									"parameters": {
-										"message": "\"Selected\"&newline&r1&newline&r2"
-									}
-								},
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 662318905411132,
-									"disabled": true,
-									"parameters": {
-										"seconds": "dt"
-									}
-								},
-								{
-									"id": "wait-for-previous-actions",
-									"objectClass": "System",
-									"sid": 245238267317492,
-									"disabled": true
-								},
-								{
-									"id": "signal",
-									"objectClass": "System",
-									"sid": 119365628693533,
-									"disabled": true,
-									"parameters": {
-										"tag": "\"destroyed1\""
-									}
-								},
-								{
-									"id": "signal",
-									"objectClass": "System",
-									"sid": 105388702683891,
-									"disabled": true,
-									"parameters": {
-										"tag": "\"destroyed2\""
+										"unique-id": "r1"
 									}
 								}
 							],
-							"sid": 257882770306911,
-							"children": [
+							"actions": [
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 865348393793680,
-											"parameters": {
-												"variable": "r1",
-												"comparison": 1,
-												"value": "-1"
-											}
-										},
-										{
-											"id": "pick-all",
-											"objectClass": "System",
-											"sid": 664445300980908,
-											"parameters": {
-												"object": "road"
-											}
-										},
-										{
-											"id": "pick-by-unique-id",
-											"objectClass": "road",
-											"sid": 624034913046997,
-											"parameters": {
-												"unique-id": "r1"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "wait-for-signal",
-											"objectClass": "System",
-											"sid": 754383928091485,
-											"disabled": true,
-											"parameters": {
-												"tag": "\"destroyed1\""
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "road",
-											"sid": 300499359453403,
-											"parameters": {
-												"instance-variable": "snapped_end",
-												"value": "-1"
-											}
-										},
-										{
-											"callFunction": "RegenSnapZones",
-											"sid": 196248632900968,
-											"parameters": [
-												"r1"
-											]
-										}
-									],
-									"sid": 747374496852055
+									"id": "set-instvar-value",
+									"objectClass": "road",
+									"sid": 941419217228342,
+									"parameters": {
+										"instance-variable": "snapped_end",
+										"value": "-1"
+									}
 								},
 								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "compare-eventvar",
-											"objectClass": "System",
-											"sid": 742737744875843,
-											"parameters": {
-												"variable": "r2",
-												"comparison": 1,
-												"value": "-1"
-											}
-										},
-										{
-											"id": "pick-all",
-											"objectClass": "System",
-											"sid": 566964193710901,
-											"parameters": {
-												"object": "road"
-											}
-										},
-										{
-											"id": "pick-by-unique-id",
-											"objectClass": "road",
-											"sid": 579435108877432,
-											"parameters": {
-												"unique-id": "r2"
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "wait-for-signal",
-											"objectClass": "System",
-											"sid": 122443928006757,
-											"disabled": true,
-											"parameters": {
-												"tag": "\"destroyed2\""
-											}
-										},
-										{
-											"id": "set-instvar-value",
-											"objectClass": "road",
-											"sid": 638513296839210,
-											"parameters": {
-												"instance-variable": "snapped_start",
-												"value": "-1"
-											}
-										},
-										{
-											"callFunction": "RegenSnapZones",
-											"sid": 474425961851901,
-											"parameters": [
-												"r2"
-											]
-										}
-									],
-									"sid": 535361316325079
-								},
-								{
-									"eventType": "block",
-									"conditions": [],
-									"actions": [
-										{
-											"id": "set-collisions-enabled",
-											"objectClass": "MapElement",
-											"sid": 667813840706122,
-											"parameters": {
-												"collisions": "enabled"
-											}
-										}
-									],
-									"sid": 872478081386959,
-									"disabled": true
+									"callFunction": "RegenSnapZones",
+									"sid": 679108570184532,
+									"parameters": [
+										"r1"
+									]
 								}
-							]
+							],
+							"sid": 193515678412058
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 459393529447970,
+									"parameters": {
+										"variable": "r2",
+										"comparison": 1,
+										"value": "-1"
+									}
+								},
+								{
+									"id": "pick-by-unique-id",
+									"objectClass": "road",
+									"sid": 325447988862028,
+									"parameters": {
+										"unique-id": "r2"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-instvar-value",
+									"objectClass": "road",
+									"sid": 212466922588049,
+									"parameters": {
+										"instance-variable": "snapped_start",
+										"value": "-1"
+									}
+								},
+								{
+									"callFunction": "RegenSnapZones",
+									"sid": 132160724288243,
+									"parameters": [
+										"r2"
+									]
+								}
+							],
+							"sid": 794174523470668
 						}
 					]
 				}
@@ -7965,14 +7706,11 @@
 							}
 						},
 						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 291720681065395,
+							"id": "pick-by-unique-id",
+							"objectClass": "road",
+							"sid": 230569246771370,
 							"parameters": {
-								"object": "road",
-								"expression": "road.selected",
-								"comparison": 0,
-								"value": "1"
+								"unique-id": "MapElement.UID"
 							}
 						}
 					],
@@ -7989,9 +7727,25 @@
 									"parameters": {
 										"object": "SnapZone"
 									}
+								},
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 320677826910075,
+									"parameters": {
+										"object": "SnapZone"
+									}
 								}
 							],
 							"actions": [
+								{
+									"callFunction": "snap",
+									"sid": 204343232311856,
+									"parameters": [
+										"road.UID",
+										"SnapZone.UID"
+									]
+								},
 								{
 									"id": "set-boolean-instvar",
 									"objectClass": "SnapZone",
@@ -8314,6 +8068,17 @@
 						"width": "2",
 						"height": "5",
 						"depth": "1"
+					}
+				},
+				{
+					"id": "set-at-xyz",
+					"objectClass": "ThisLvl",
+					"sid": 411084947793028,
+					"parameters": {
+						"x": "0",
+						"y": "2",
+						"z": "0",
+						"value": "choose_back.SelectedIndex"
 					}
 				}
 			],
@@ -9145,11 +8910,13 @@
 							}
 						},
 						{
-							"id": "for-each",
+							"id": "for-each-ordered",
 							"objectClass": "System",
-							"sid": 537138053228108,
+							"sid": 625649817544042,
 							"parameters": {
-								"object": "MapElement"
+								"object": "MapElement",
+								"expression": "MapElement.ZIndex",
+								"order": "ascending"
 							}
 						}
 					],
@@ -9559,6 +9326,102 @@
 					]
 				}
 			]
+		},
+		{
+			"functionName": "GetBackground",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "ImageName",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 330602247107761
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [],
+			"sid": 355970624915481,
+			"children": [
+				{
+					"eventType": "script",
+					"script": "const furl = localVars.ImageName + \".png\";\nconst link = await runtime.assets.getProjectFileUrl(furl);\nruntime.callFunction(\"LoadBackground\", link);"
+				}
+			]
+		},
+		{
+			"functionName": "LoadBackground",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "URL",
+					"type": "string",
+					"initialValue": "",
+					"comment": "",
+					"sid": 301891590405461
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "load-image-from-url",
+					"objectClass": "background",
+					"sid": 559264641878003,
+					"parameters": {
+						"uri": "URL",
+						"cross-origin": "anonymous"
+					}
+				}
+			],
+			"sid": 407003200790325
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-selection-changed",
+					"objectClass": "choose_back",
+					"sid": 981899918084718
+				},
+				{
+					"id": "compare-instance-variable",
+					"objectClass": "choose_back",
+					"sid": 248701566069443,
+					"parameters": {
+						"instance-variable": "last_index",
+						"comparison": 1,
+						"value": "Self.SelectedIndex"
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "GetBackground",
+					"sid": 625536484282410,
+					"parameters": [
+						"\"back_\"&str(choose_back.SelectedIndex + 1)"
+					]
+				},
+				{
+					"id": "set-instvar-value",
+					"objectClass": "choose_back",
+					"sid": 964945542395671,
+					"parameters": {
+						"instance-variable": "last_index",
+						"value": "Self.SelectedIndex"
+					}
+				}
+			],
+			"sid": 237836341244393,
+			"isOrBlock": true
 		}
 	],
 	"sid": 290152901591731

@@ -48,7 +48,7 @@
 				{
 					"type": "welcome_txt",
 					"properties": {
-						"text": "Drift Game Level Editor\n\nbuild alpha 0.1.0",
+						"text": "Drift Game Level Editor\n\nbuild alpha 0.2.0",
 						"enable-bbcode": true,
 						"font": "Arial",
 						"size": 24,

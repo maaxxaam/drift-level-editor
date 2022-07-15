@@ -658,6 +658,7 @@
 					},
 					"effects": {
 						"TintRed": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									1,
@@ -668,6 +669,7 @@
 							}
 						},
 						"TintSelected": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									0,
@@ -723,6 +725,7 @@
 					},
 					"effects": {
 						"TintRed": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									1,
@@ -733,6 +736,7 @@
 							}
 						},
 						"TintSelected": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									0,
@@ -788,6 +792,7 @@
 					},
 					"effects": {
 						"TintRed": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									1,
@@ -798,6 +803,7 @@
 							}
 						},
 						"TintSelected": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									0,
@@ -883,6 +889,7 @@
 					},
 					"effects": {
 						"TintRed": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									1,
@@ -893,6 +900,7 @@
 							}
 						},
 						"TintSelected": {
+							"isEnabled": true,
 							"parameters": {
 								"color": [
 									1,

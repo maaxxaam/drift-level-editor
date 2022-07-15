@@ -4,42 +4,76 @@
 		{
 			"name": "Level",
 			"overriden": 0,
-			"subLayers": [],
-			"instances": [
+			"subLayers": [
 				{
-					"type": "background",
-					"properties": {
-						"initially-visible": true,
-						"origin": "top-left",
-						"wrap-horizontal": "repeat",
-						"wrap-vertical": "repeat",
-						"image-offset-x": 0,
-						"image-offset-y": 0,
-						"image-scale-x": 1,
-						"image-scale-y": 1,
-						"image-angle": 0
-					},
-					"uid": 69,
-					"instanceVariables": {},
-					"behaviors": {},
-					"world": {
-						"x": 0,
-						"y": 0,
-						"width": 30000,
-						"height": 30000,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 0,
-						"zElevation": 0
-					}
+					"name": "Background",
+					"overriden": 0,
+					"subLayers": [],
+					"instances": [
+						{
+							"type": "background",
+							"properties": {
+								"initially-visible": true,
+								"origin": "top-left",
+								"wrap-horizontal": "repeat",
+								"wrap-vertical": "repeat",
+								"image-offset-x": 0,
+								"image-offset-y": 0,
+								"image-scale-x": 1,
+								"image-scale-y": 1,
+								"image-angle": 0
+							},
+							"uid": 69,
+							"instanceVariables": {},
+							"behaviors": {},
+							"world": {
+								"x": 0,
+								"y": 0,
+								"width": 30000,
+								"height": 30000,
+								"originX": 0,
+								"originY": 0,
+								"color": [
+									1,
+									1,
+									1,
+									1
+								],
+								"angle": 0,
+								"zElevation": 0
+							}
+						}
+					],
+					"sid": 917220906658680,
+					"effectTypes": [],
+					"isInitiallyVisible": true,
+					"isInitiallyInteractive": true,
+					"color": [
+						1,
+						1,
+						1,
+						1
+					],
+					"backgroundColor": [
+						0,
+						0,
+						0,
+						1
+					],
+					"isTransparent": false,
+					"parallaxX": 1,
+					"parallaxY": 1,
+					"scaleRate": 1,
+					"forceOwnTexture": false,
+					"renderingMode": "3d",
+					"drawOrder": "z-order",
+					"useRenderCells": false,
+					"blendMode": "normal",
+					"zElevation": 0,
+					"global": false
 				}
 			],
+			"instances": [],
 			"sid": 753722011278477,
 			"effectTypes": [],
 			"isInitiallyVisible": true,
@@ -56,14 +90,14 @@
 				0,
 				1
 			],
-			"isTransparent": false,
+			"isTransparent": true,
 			"parallaxX": 1,
 			"parallaxY": 1,
 			"scaleRate": 1,
 			"forceOwnTexture": false,
 			"renderingMode": "3d",
 			"drawOrder": "z-order",
-			"useRenderCells": false,
+			"useRenderCells": true,
 			"blendMode": "normal",
 			"zElevation": 0,
 			"global": false
@@ -116,17 +150,17 @@
 						"tooltip": "",
 						"initially-visible": true,
 						"enabled": true,
-						"id": "",
-						"class": ""
+						"id": "scale",
+						"class": "slider thumb-round"
 					},
 					"uid": 9,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 14,
+						"x": 8,
 						"y": 680,
 						"width": 200,
-						"height": 25,
+						"height": 8,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -163,8 +197,8 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 15,
-						"y": 640,
+						"x": 8,
+						"y": 632,
 						"width": 200,
 						"height": 30,
 						"originX": 0,
@@ -400,6 +434,39 @@
 							1
 						]
 					}
+				},
+				{
+					"type": "choose_back",
+					"properties": {
+						"items": "Фон 1\nФон 2\nФон 3",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"type": "dropdown-list",
+						"multi-select": false,
+						"auto-font-size": true,
+						"id": "",
+						"class": ""
+					},
+					"uid": 83,
+					"instanceVariables": {
+						"last_index": 0
+					},
+					"behaviors": {},
+					"world": {
+						"x": 416,
+						"y": 680,
+						"width": 128,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
 				}
 			],
 			"sid": 446621091389230,
@@ -485,7 +552,7 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 240,
+						"x": 224,
 						"y": 680,
 						"width": 150,
 						"height": 22,
@@ -541,13 +608,13 @@
 						"initially-visible": true,
 						"enabled": true,
 						"id": "",
-						"class": ""
+						"class": "slider thumb-square"
 					},
 					"uid": 16,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 470,
+						"x": 505,
 						"y": 680,
 						"width": 200,
 						"height": 25,
@@ -572,16 +639,16 @@
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
-						"class": ""
+						"class": "button-slider"
 					},
 					"uid": 15,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 435,
+						"x": 481,
 						"y": 680,
-						"width": 36,
-						"height": 24,
+						"width": 25,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -603,16 +670,16 @@
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
-						"class": ""
+						"class": "button-slider"
 					},
 					"uid": 14,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 670,
+						"x": 705,
 						"y": 680,
-						"width": 36,
-						"height": 24,
+						"width": 25,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -649,10 +716,10 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 475,
-						"y": 640,
+						"x": 505,
+						"y": 632,
 						"width": 200,
-						"height": 30,
+						"height": 32,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -683,9 +750,40 @@
 					"behaviors": {},
 					"world": {
 						"x": 1160,
-						"y": 640,
+						"y": 632,
 						"width": 96,
 						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "SetTurnAngle",
+					"properties": {
+						"value": 0,
+						"minimum": -120,
+						"maximum": 120,
+						"step": 10,
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"id": "",
+						"class": "slider thumb-square"
+					},
+					"uid": 22,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 769,
+						"y": 680,
+						"width": 200,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -707,16 +805,16 @@
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
-						"class": ""
+						"class": "button-slider"
 					},
 					"uid": 19,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 750,
+						"x": 745,
 						"y": 680,
-						"width": 36,
-						"height": 24,
+						"width": 25,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -738,16 +836,16 @@
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
-						"class": ""
+						"class": "button-slider"
 					},
 					"uid": 20,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 985,
+						"x": 969,
 						"y": 680,
-						"width": 36,
-						"height": 24,
+						"width": 25,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -784,10 +882,10 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 785,
-						"y": 640,
+						"x": 769,
+						"y": 632,
 						"width": 200,
-						"height": 30,
+						"height": 32,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -798,37 +896,6 @@
 						],
 						"angle": 0,
 						"zElevation": 0
-					}
-				},
-				{
-					"type": "SetTurnAngle",
-					"properties": {
-						"value": 0,
-						"minimum": -120,
-						"maximum": 120,
-						"step": 10,
-						"tooltip": "",
-						"initially-visible": true,
-						"enabled": true,
-						"id": "",
-						"class": ""
-					},
-					"uid": 22,
-					"instanceVariables": {},
-					"behaviors": {},
-					"world": {
-						"x": 785,
-						"y": 680,
-						"width": 200,
-						"height": 25,
-						"originX": 0,
-						"originY": 0,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						]
 					}
 				},
 				{
@@ -848,8 +915,8 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 240,
-						"y": 640,
+						"x": 224,
+						"y": 632,
 						"width": 150,
 						"height": 22,
 						"originX": 0,
@@ -879,7 +946,7 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 1040,
+						"x": 1300,
 						"y": 640,
 						"width": 96,
 						"height": 24,
@@ -910,9 +977,133 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 1039,
+						"x": 392,
 						"y": 680,
-						"width": 96,
+						"width": 80,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_up",
+					"properties": {
+						"type": "button",
+						"text": "⬆",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 74,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 1040,
+						"y": 632,
+						"width": 24,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_down",
+					"properties": {
+						"type": "button",
+						"text": "⬇",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 75,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 1040,
+						"y": 680,
+						"width": 24,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_top",
+					"properties": {
+						"type": "button",
+						"text": "Верх",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 76,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 1088,
+						"y": 632,
+						"width": 48,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_bottom",
+					"properties": {
+						"type": "button",
+						"text": "Низ",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 77,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 1088,
+						"y": 680,
+						"width": 48,
 						"height": 24,
 						"originX": 0,
 						"originY": 0,
@@ -1033,7 +1224,7 @@
 						"initially-visible": true,
 						"enabled": true,
 						"id": "",
-						"class": ""
+						"class": "slider thumb-square"
 					},
 					"uid": 63,
 					"instanceVariables": {},
@@ -1064,16 +1255,16 @@
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
-						"class": ""
+						"class": "button-slider"
 					},
 					"uid": 64,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 432,
+						"x": 440,
 						"y": 688,
-						"width": 36,
-						"height": 24,
+						"width": 25,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -1095,16 +1286,16 @@
 						"auto-font-size": true,
 						"checked": false,
 						"id": "",
-						"class": ""
+						"class": "button-slider"
 					},
 					"uid": 65,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 656,
+						"x": 664,
 						"y": 688,
-						"width": 36,
-						"height": 24,
+						"width": 25,
+						"height": 25,
 						"originX": 0,
 						"originY": 0,
 						"color": [
@@ -1239,6 +1430,161 @@
 						"x": 1040,
 						"y": 688,
 						"width": 96,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Start",
+					"properties": {
+						"type": "checkbox",
+						"text": "Start",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": false,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 78,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 752,
+						"y": 680,
+						"width": 96,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_up",
+					"properties": {
+						"type": "button",
+						"text": "⬆",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 79,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 920,
+						"y": 632,
+						"width": 24,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_down",
+					"properties": {
+						"type": "button",
+						"text": "⬇",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 80,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 992,
+						"y": 632,
+						"width": 24,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_top",
+					"properties": {
+						"type": "button",
+						"text": "Верх",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 81,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 896,
+						"y": 680,
+						"width": 48,
+						"height": 24,
+						"originX": 0,
+						"originY": 0,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						]
+					}
+				},
+				{
+					"type": "Z_bottom",
+					"properties": {
+						"type": "button",
+						"text": "Низ",
+						"tooltip": "",
+						"initially-visible": true,
+						"enabled": true,
+						"auto-font-size": true,
+						"checked": false,
+						"id": "",
+						"class": ""
+					},
+					"uid": 82,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 968,
+						"y": 680,
+						"width": 48,
 						"height": 24,
 						"originX": 0,
 						"originY": 0,
